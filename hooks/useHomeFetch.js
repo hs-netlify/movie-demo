@@ -24,6 +24,11 @@ export const useHomeFetch = () => {
         `/api/fetch-movies?searchTerm=${searchTerm}&page=${page}`
       );
 
+      console.log(
+        `/api/fetch-movies?searchTerm=${searchTerm}&page=${page}`,
+        movies
+      );
+
       //    const movies = await API.fetchMovies(searchTerm, page);
       setState((prev) => ({
         ...movies,
