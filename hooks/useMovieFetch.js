@@ -15,13 +15,14 @@ const useMovieFetch = (movieId) => {
         setLoading(true);
         setError(false);
         //const movie = await API.fetchMovie(movieId);
-        const movie = (
+        const movie = await (
           await fetch(`/api/fetch-movie?movieId=${movieId}`)
         ).json();
 
         const movie2 = await fetch(`/api/fetch-movie?movieId=${movieId}`);
         console.log(movie);
-        console.log(movie2);
+        console.log(await movie2.json());
+
         //  const credits = await API.fetchCredits(movieId);
         const credits = (
           await fetch(`/api/fetch-credits?movieId=${movieId}`)
