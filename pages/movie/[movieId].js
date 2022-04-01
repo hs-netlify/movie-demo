@@ -16,9 +16,8 @@ import Actor from "../../components/Actor/Actor";
 import useMovieFetch from "../../hooks/useMovieFetch";
 
 const Movie = () => {
-  const router = useRouter();
-  const { slug } = router.query;
-  const { state: movie, loading, error } = useMovieFetch(slug);
+  const { movieId } = router.query;
+  const { state: movie, loading, error } = useMovieFetch(movieId);
 
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong...</div>;
