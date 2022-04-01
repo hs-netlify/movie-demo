@@ -23,6 +23,7 @@ let requests = {
     return await (await fetch(endpoint)).json();
   },
   fetchMovie: async (movieId) => {
+    console.log("and in function", movieId);
     const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
