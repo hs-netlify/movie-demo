@@ -20,14 +20,9 @@ export const useHomeFetch = () => {
     try {
       setError(false);
       setLoading(true);
-      const movies = await fetch(
-        `/api/fetch-movies?searchTerm=${searchTerm}&page=${page}`
-      );
-
-      console.log(
-        `/api/fetch-movies?searchTerm=${searchTerm}&page=${page}`,
-        movies
-      );
+      const movies = (
+        await fetch(`/api/fetch-movies?searchTerm=${searchTerm}&page=${page}`)
+      ).json();
 
       //    const movies = await API.fetchMovies(searchTerm, page);
       setState((prev) => ({
