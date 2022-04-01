@@ -16,6 +16,7 @@ import Actor from "../../components/Actor/Actor";
 import useMovieFetch from "../../hooks/useMovieFetch";
 
 const Movie = () => {
+  const router = useRouter();
   const { movieId } = router.query;
   const { state: movie, loading, error } = useMovieFetch(movieId);
 
