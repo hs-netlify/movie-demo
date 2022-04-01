@@ -20,7 +20,7 @@ const Movie = () => {
   const { movieId } = router.query;
   const { state: movie, loading, error } = useMovieFetch(movieId);
 
-  if (loading) return <Spinner />;
+  //if (loading) return <Spinner />;
   if (error) return <div>Something went wrong...</div>;
   return (
     <>
