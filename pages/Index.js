@@ -17,7 +17,7 @@ const Home = () => {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
     useHomeFetch();
 
-  if (error) return <div>Something Went Wrong</div>;
+  //if (error) return <div>Something Went Wrong</div>;
 
   return (
     <>
@@ -33,6 +33,7 @@ const Home = () => {
         {state.results.map((movie) => (
           <Thumb
             movieId={movie.id}
+            key={Math.floor(Math.random() * 100000)}
             image={
               movie.poster_path
                 ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`

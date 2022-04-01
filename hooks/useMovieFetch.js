@@ -1,3 +1,4 @@
+import { withCoalescedInvoke } from "next/dist/lib/coalesced-function";
 import { useState, useEffect } from "react";
 
 import API from "../utils/API";
@@ -10,20 +11,20 @@ const useMovieFetch = (movieId) => {
 
   useEffect(() => {
     const fetchMovie = async () => {
+      if (!movieId) return;
       try {
-        //  setLoading(true);
+        setLoading(true);
         setError(false);
-        //const movie = await API.fetchMovie(movieId);
+
         const movie = await (
           await fetch(`/api/fetch-movie?movieId=${movieId}`)
         ).json();
 
-        //  const credits = await API.fetchCredits(movieId);
-        const credits = (
+        const credits = await (
           await fetch(`/api/fetch-credits?movieId=${movieId}`)
         ).json();
 
-        //Get directors only
+        // Get directors only
         const directors = credits.crew.filter(
           (member) => member.job === "Director"
         );
@@ -34,27 +35,14 @@ const useMovieFetch = (movieId) => {
           directors,
         });
 
-        //    setLoading(false);
+        setLoading(false);
       } catch (error) {
+        console.log(error);
         setError(true);
       }
     };
-
-    const sessionState = isPersistedState(movieId);
-    if (sessionState) {
-      setState(sessionState);
-      setLoading(false);
-      return;
-    }
-
-    fetchMovie();
+    if (movieId) fetchMovie();
   }, [movieId]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      sessionStorage.setItem(movieId, JSON.stringify(state));
-    }
-  }, [movieId, state]);
 
   return { state, loading, error };
 };
