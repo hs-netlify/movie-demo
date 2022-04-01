@@ -7,21 +7,16 @@ const useMovieFetch = (movieId) => {
   const [state, setState] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  console.log("movie id in here", movieId);
 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        setLoading(true);
+        //  setLoading(true);
         setError(false);
         //const movie = await API.fetchMovie(movieId);
         const movie = await (
           await fetch(`/api/fetch-movie?movieId=${movieId}`)
         ).json();
-
-        const movie2 = await fetch(`/api/fetch-movie?movieId=${movieId}`);
-        console.log(movie);
-        console.log(await movie2.json());
 
         //  const credits = await API.fetchCredits(movieId);
         const credits = (
@@ -39,7 +34,7 @@ const useMovieFetch = (movieId) => {
           directors,
         });
 
-        setLoading(false);
+        //    setLoading(false);
       } catch (error) {
         setError(true);
       }

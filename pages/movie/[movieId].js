@@ -18,7 +18,6 @@ import useMovieFetch from "../../hooks/useMovieFetch";
 const Movie = () => {
   const router = useRouter();
   const { movieId } = router.query;
-  console.log("movie id", movieId);
   const { state: movie, loading, error } = useMovieFetch(movieId);
 
   if (loading) return <Spinner />;
