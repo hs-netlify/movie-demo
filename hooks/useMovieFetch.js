@@ -14,8 +14,14 @@ const useMovieFetch = (movieId) => {
       try {
         setLoading(true);
         setError(false);
-        const movie = await API.fetchMovie(movieId);
-        const credits = await API.fetchCredits(movieId);
+        //const movie = await API.fetchMovie(movieId);
+        const movie = (
+          await fetch(`/api/fetch-movie?movieId=${movieId}`)
+        ).json();
+        //  const credits = await API.fetchCredits(movieId);
+        const credits = (
+          await fetch(`/api/fetch-credits?movieId=${movieId}`)
+        ).json();
 
         //Get directors only
         const directors = credits.crew.filter(
