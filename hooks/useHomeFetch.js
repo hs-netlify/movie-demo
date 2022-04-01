@@ -20,9 +20,10 @@ export const useHomeFetch = () => {
     try {
       setError(false);
       setLoading(true);
-      const movies = JSON.parse(
-        await fetch(`/api/fetch-movies?searchTerm=${searchTerm}&page=${page}`)
+      const movies = await fetch(
+        `/api/fetch-movies?searchTerm=${searchTerm}&page=${page}`
       );
+
       //    const movies = await API.fetchMovies(searchTerm, page);
       setState((prev) => ({
         ...movies,
