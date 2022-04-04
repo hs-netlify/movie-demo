@@ -15,7 +15,7 @@ const Form = () => {
       .join("&");
   };
 
-  const sendData = (e) => {
+  const handleSubmit = (e) => {
     setPosting(false);
 
     fetch("/", {
@@ -29,7 +29,7 @@ const Form = () => {
     }, 1000);
     setState({});
   };
-
+  const { name, comment } = state;
   return posting ? (
     <Wrapper>
       <h1>POSTING COMMENT ...</h1>
@@ -37,37 +37,39 @@ const Form = () => {
   ) : (
     <Wrapper image="https://image.tmdb.org/t/p/w1280/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg">
       <Content>
-        <FormWrapper
-          id="comments"
-          onSubmit={sendData}
-          name="Comments"
-          data-netlify="true"
-        >
-          <h1 style={{ color: "black" }}>Contact Us</h1>
-          <h3>Name:</h3>
-          <input
-            style={{ fontSize: "1.4rem", margin: "10px", padding: "5px" }}
-            type="text"
-            placeholder="Name"
-            name="name"
-            vale={state.name}
-            onChange={handleChange}
-          ></input>
-          <h3>Comment:</h3>
-          <textarea
-            name="comment"
-            style={{
-              fontSize: "1.2rem",
-              margin: "10px",
-              padding: "5px",
-              minHeight: "100px",
-            }}
-            placeholder="Comment"
-            value={state.comment}
-            onChange={handleChange}
-          ></textarea>
-          <h1 style={{ color: "black" }}></h1>
-          <Button type="submit" text="Submit" callback={() => sendData()} />
+        <FormWrapper>
+          <form
+            id="comments"
+            onSubmit={handleSubmit}
+            name="Comments"
+            data-netlify="true"
+          >
+            <h1 style={{ color: "black" }}>Contact Us</h1>
+            <h3>Name:</h3>
+            <input
+              style={{ fontSize: "1.4rem", margin: "10px", padding: "5px" }}
+              type="text"
+              placeholder="Name"
+              name="name"
+              vale={name}
+              onChange={handleChange}
+            ></input>
+            <h3>Comment:</h3>
+            <textarea
+              name="comment"
+              style={{
+                fontSize: "1.2rem",
+                margin: "10px",
+                padding: "5px",
+                minHeight: "100px",
+              }}
+              placeholder="Comment"
+              value={comment}
+              onChange={handleChange}
+            ></textarea>
+            <h1 style={{ color: "black" }}></h1>
+            <button type="submit">Submit</button>
+          </form>
         </FormWrapper>
       </Content>
     </Wrapper>

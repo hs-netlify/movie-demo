@@ -40,7 +40,7 @@ export const Content = styled.div`
   }
 `;
 
-export const FormWrapper = styled.form`
+export const FormWrapper = styled.div`
   min-width: 500px;
   display: flex;
   font-size: 5px;
