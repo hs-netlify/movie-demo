@@ -10,7 +10,7 @@ const Header = () => (
       <Link href="/">
         <LogoImg src="/images/react-movie-logo.svg" alt="rmdb-logo" />
       </Link>
-
+      <h1 style={{ color: "white" }}>TEST BANNER</h1>
       <TMDBLogoImg src="/images/tmdb_logo.svg" />
     </Content>
   </Wrapper>

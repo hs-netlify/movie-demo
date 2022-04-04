@@ -37,7 +37,7 @@ export const getStaticPaths = async () => {
 };
 
 const Movie = ({ movie }) => {
-  if (!movie) return <></>;
+  if (!movie) return <Spinner />;
   return (
     <>
       <BreadCrumb movieTitle={movie.original_title} />

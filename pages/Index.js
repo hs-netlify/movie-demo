@@ -14,6 +14,7 @@ import Thumb from "../components/Thumb/Thumb";
 import Spinner from "../components/Spinner/Spinner";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Button from "../components/Button/Button";
+import Header from "../components/Header/Header";
 
 import API from "../utils/API";
 
@@ -49,6 +50,7 @@ const Home = ({ movies }) => {
   const randFilm = new Date().getDate();
   return (
     <>
+      <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[randFilm].backdrop_path}`}
