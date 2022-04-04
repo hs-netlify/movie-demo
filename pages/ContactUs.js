@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 const ContactUs = () => (
   <>
     <Header />
-    <Form />
+    {/* <Form /> */}
   </>
 );
 
