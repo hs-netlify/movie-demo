@@ -7,6 +7,8 @@ import {
   LOGIN_URL,
   SESSION_ID_URL,
 } from "./config";
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const defaultConfig = {
   method: "POST",
@@ -21,6 +23,7 @@ const fetchMovies = async (searchTerm, page) => {
     : `${POPULAR_BASE_URL}&page=${page}`;
   return await (await fetch(endpoint)).json();
 };
+
 const fetchMovie = async (movieId) => {
   const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
   return await (await fetch(endpoint)).json();
