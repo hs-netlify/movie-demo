@@ -1,9 +1,10 @@
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
+
+import API from "../../utils/API";
+
 exports.handler = async (event) => {
   const { movieId } = event.queryStringParameters;
-  const endpoint = `${process.env.API_URL}movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
-  let res = await (await fetch(endpoint)).json();
-
-  return { statusCode: 200, body: JSON.stringify(res) };
+  let movies = await API.fetchMovie(movieId);
+  return { statusCode: 200, body: JSON.stringify(movie) };
 };

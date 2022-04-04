@@ -34,6 +34,11 @@ export const useHomeFetch = () => {
     setLoading(false);
   };
 
+  //Apply search
+  useEffect(() => {
+    fetchMovies(1, searchTerm);
+  }, [searchTerm]);
+
   //Load more
   useEffect(() => {
     if (!isLoadingMore) return;
