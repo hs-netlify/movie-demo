@@ -6,20 +6,16 @@ import { useRouter } from "next/router";
 const Form = () => {
   const [state, setState] = useState({ name: "", comment: "" });
   const [posting, setPosting] = useState(false);
+  const handleChange = (e) => setState({ [e.target.name]: e.target.value });
 
-  const handleNameChange = (e) =>
-    setState({ name: e.target.value, comment: state.comment });
-  const handleCommentChange = (e) =>
-    setState({ name: state.name, comment: e.target.value });
-
-  const sendData = () => {
+  const sendData = (e) => {
     setPosting(false);
-    fetch("http://google.com", {
+    e.preventDefault();
+
+    fetch("/", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(state),
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact", ...state }),
     });
     setPosting(true);
     setTimeout(() => {
@@ -35,18 +31,25 @@ const Form = () => {
   ) : (
     <Wrapper image="https://image.tmdb.org/t/p/w1280/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg">
       <Content>
-        <FormWrapper name="Comments" data-netlify="true">
+        <FormWrapper
+          id="comments"
+          onSubmit={sendData}
+          name="Comments"
+          data-netlify="true"
+        >
           <h1 style={{ color: "black" }}>Contact Us</h1>
           <h3>Name:</h3>
           <input
             style={{ fontSize: "1.4rem", margin: "10px", padding: "5px" }}
             type="text"
             placeholder="Name"
+            name="name"
             vale={state.name}
-            onChange={handleNameChange}
+            onChange={handleChange}
           ></input>
           <h3>Comment:</h3>
           <textarea
+            name="comment"
             style={{
               fontSize: "1.2rem",
               margin: "10px",
@@ -55,10 +58,10 @@ const Form = () => {
             }}
             placeholder="Comment"
             value={state.comment}
-            onChange={handleCommentChange}
+            onChange={handleChange}
           ></textarea>
           <h1 style={{ color: "black" }}></h1>
-          <Button text="Submit" callback={() => sendData()} />
+          <Button type="submit" text="Submit" callback={() => sendData()} />
         </FormWrapper>
       </Content>
     </Wrapper>
