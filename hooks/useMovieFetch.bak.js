@@ -1,8 +1,4 @@
-import { withCoalescedInvoke } from "next/dist/lib/coalesced-function";
 import { useState, useEffect } from "react";
-
-import API from "../utils/API";
-import { isPersistedState } from "../utils/helpers";
 
 const useMovieFetch = (movieId) => {
   const [state, setState] = useState({});

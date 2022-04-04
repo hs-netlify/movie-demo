@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from "next/router";
 
 //config
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../utils/config";

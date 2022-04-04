@@ -34,12 +34,6 @@ export const useHomeFetch = () => {
     setLoading(false);
   };
 
-  // Initial Render
-  // useEffect(() => {
-  //   setState(initialState);
-  //   fetchMovies(1, searchTerm);
-  // }, [searchTerm]);
-
   //Load more
   useEffect(() => {
     if (!isLoadingMore) return;
