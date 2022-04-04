@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../utils/config";
+import {
+  POSTER_SIZE,
+  BACKDROP_SIZE,
+  IMAGE_BASE_URL,
+  API_KEY,
+} from "../utils/config";
 
 //Components
 import HeroImage from "../components/HeroImage/HeroImage";
@@ -10,22 +15,45 @@ import Spinner from "../components/Spinner/Spinner";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Button from "../components/Button/Button";
 
+import API from "../utils/API";
+
+export const getStaticProps = async () => {
+  const movies = await API.fetchMovies("", 1);
+  return {
+    props: {
+      movies,
+    },
+  };
+};
+
 //Hook
 import { useHomeFetch } from "../hooks/useHomeFetch";
 
-const Home = () => {
-  const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
-    useHomeFetch();
+const Home = ({ movies }) => {
+  const {
+    state,
+    setState,
+    loading,
+    error,
+    searchTerm,
+    setSearchTerm,
+    setIsLoadingMore,
+  } = useHomeFetch();
 
-  //if (error) return <div>Something Went Wrong</div>;
+  useEffect(() => {
+    //Initialise the home page with static content
+    if (state.results.length < 1) setState(movies);
+  });
 
+  if (error) return <div>Something Went Wrong</div>;
+  const randFilm = new Date().getDate();
   return (
     <>
-      {!searchTerm && state.results[0] ? (
+      {!searchTerm && state.results[randFilm] ? (
         <HeroImage
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
-          title={state.results[0].original_title}
-          text={state.results[0].overview}
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[randFilm].backdrop_path}`}
+          title={state.results[randFilm].original_title}
+          text={state.results[randFilm].overview}
         />
       ) : null}
       <SearchBar setSearchTerm={setSearchTerm} />

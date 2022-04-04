@@ -9,7 +9,7 @@ const Thumb = ({ image, movieId, clickable }) => (
   <div>
     {clickable ? (
       <Link href={`/movie/${movieId}`}>
-        <Image src={image} alt="movie-thumb" />
+        <Image className="clickable" src={image} alt="movie-thumb" />
       </Link>
     ) : (
       <Image src={image} alt="movie-thumb" />

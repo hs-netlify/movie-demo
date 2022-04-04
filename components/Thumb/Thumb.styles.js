@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Image = styled.img`
   width: 100%;
@@ -9,8 +9,9 @@ export const Image = styled.img`
   border-radius: 20px;
   animation: animateMovieThumb 0.5s;
 
-  :hover {
+  &.clickable:hover {
     opacity: 0.8;
+    cursor: pointer;
   }
 
   @keyframes animateMovieThumb {

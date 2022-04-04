@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import API from "../utils/API";
-import { isPersistedState } from "../utils/helpers";
 
 const initialState = {
   page: 0,
@@ -20,10 +18,9 @@ export const useHomeFetch = () => {
     try {
       setError(false);
       setLoading(true);
-      const movies = await API.fetchMovies(searchTerm, page);
-      // (
-      //   await fetch(`/api/fetch-movies?searchTerm=${searchTerm}&page=${page}`)
-      // ).json();
+      const movies = await (
+        await fetch(`/api/fetch-movies?searchTerm=${searchTerm}&page=${page}`)
+      ).json();
 
       setState((prev) => ({
         ...movies,
@@ -37,19 +34,11 @@ export const useHomeFetch = () => {
     setLoading(false);
   };
 
-  //Initial Render
-  useEffect(() => {
-    if (!searchTerm && typeof window !== "undefined") {
-      const sessionState = isPersistedState("homeState");
-      if (sessionState) {
-        setState(sessionState);
-        return;
-      }
-    }
-
-    setState(initialState);
-    fetchMovies(1, searchTerm);
-  }, [searchTerm]);
+  // Initial Render
+  // useEffect(() => {
+  //   setState(initialState);
+  //   fetchMovies(1, searchTerm);
+  // }, [searchTerm]);
 
   //Load more
   useEffect(() => {
@@ -58,11 +47,13 @@ export const useHomeFetch = () => {
     setIsLoadingMore(false);
   }, [isLoadingMore, searchTerm, state.page]);
 
-  //Write to session storage
-  useEffect(() => {
-    if (!searchTerm && typeof window !== "undefined")
-      sessionStorage.setItem("homeState", JSON.stringify(state));
-  }, [searchTerm, state]);
-
-  return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
+  return {
+    state,
+    setState,
+    loading,
+    error,
+    searchTerm,
+    setSearchTerm,
+    setIsLoadingMore,
+  };
 };

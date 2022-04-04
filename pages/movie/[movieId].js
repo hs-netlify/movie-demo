@@ -13,16 +13,31 @@ import MovieInfoBar from "../../components/MovieInfoBar/MovieInfoBar";
 import Actor from "../../components/Actor/Actor";
 
 //hook
-import useMovieFetch from "../../hooks/useMovieFetch";
 
-const Movie = () => {
-  const router = useRouter();
-  const { movieId } = router.query;
-  const { state: movie, loading, error } = useMovieFetch(movieId);
+import API from "../../utils/API";
 
-  if (loading) return <Spinner />;
-  if (error) return <div>Something went wrong...</div>;
+export const getStaticProps = async (context) => {
+  const movieId = context.params.movieId;
 
+  const movie = await API.detailedMovieFetch(movieId);
+
+  return { props: { movie }, revalidate: 300 };
+};
+
+export const getStaticPaths = async () => {
+  const movies = await API.fetchMovies("", 1);
+  const paths = movies
+    ? movies.results.map((movie) => ({
+        params: {
+          movieId: `${movie.id}`,
+        },
+      }))
+    : [];
+
+  return { paths, fallback: true };
+};
+
+const Movie = ({ movie }) => {
   return (
     <>
       <BreadCrumb movieTitle={movie.original_title} />
