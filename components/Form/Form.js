@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { Wrapper, Content, FormWrapper } from "./Form.styles";
 import Button from "../Button/Button";
-import { useRouter } from "next/router";
 
 const Form = () => {
   const [state, setState] = useState({ name: "", comment: "" });
   const [posting, setPosting] = useState(false);
   const handleChange = (e) => setState({ [e.target.name]: e.target.value });
 
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&");
+  };
+
   const sendData = (e) => {
     setPosting(false);
-    e.preventDefault();
 
     fetch("/", {
       method: "POST",
