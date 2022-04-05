@@ -69,7 +69,7 @@ const Form = () => {
               onChange={handleChange}
             ></textarea>
             <h1 style={{ color: "black" }}></h1>
-            <button type="submit"></button>
+            <Button text="Submit" type="submit"></Button>
           </form>
         </FormWrapper>
       </Content>
