@@ -43,6 +43,7 @@ const Form = () => {
             onSubmit={handleSubmit}
             name="contact"
             data-netlify="true"
+            method="POST"
           >
             <input type="hidden" name="form-name" value="contact" />
             <h1 style={{ color: "black" }}>Contact Us</h1>
