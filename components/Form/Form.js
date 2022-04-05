@@ -41,9 +41,10 @@ const Form = () => {
           <form
             id="comments"
             onSubmit={handleSubmit}
-            name="Comments"
+            name="contact"
             data-netlify="true"
           >
+            <input type="hidden" name="form-name" value="contact" />
             <h1 style={{ color: "black" }}>Contact Us</h1>
             <h3>Name:</h3>
             <input
@@ -68,7 +69,7 @@ const Form = () => {
               onChange={handleChange}
             ></textarea>
             <h1 style={{ color: "black" }}></h1>
-            <button type="submit">Submit</button>
+            <button type="submit"></button>
           </form>
         </FormWrapper>
       </Content>
