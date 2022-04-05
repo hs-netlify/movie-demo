@@ -15,6 +15,7 @@ import Spinner from "../components/Spinner/Spinner";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Button from "../components/Button/Button";
 import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 import API from "../utils/API";
 
@@ -79,6 +80,7 @@ const Home = ({ movies }) => {
       {state.page < state.total_pages && !loading && (
         <Button text="Load More" callback={() => setIsLoadingMore(true)} />
       )}
+      <Footer />
     </>
   );
 };

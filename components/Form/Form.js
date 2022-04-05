@@ -48,7 +48,12 @@ const Form = () => {
             <h1 style={{ color: "black" }}>Contact Us</h1>
             <h3>Name:</h3>
             <input
-              style={{ fontSize: "1.4rem", margin: "10px", padding: "5px" }}
+              style={{
+                fontSize: "1.4rem",
+
+                padding: "5px",
+                width: "100%",
+              }}
               type="text"
               placeholder="Name"
               name="name"
@@ -60,8 +65,9 @@ const Form = () => {
               name="comment"
               style={{
                 fontSize: "1.2rem",
-                margin: "10px",
+
                 padding: "5px",
+                width: "100%",
                 minHeight: "100px",
               }}
               placeholder="Comment"

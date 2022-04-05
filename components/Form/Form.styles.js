@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 90vh;
-  padding: 20px 100px;
+  padding: 30px 100px;
   background: ${(props) =>
     `linear-gradient(
       to bottom, rgba(0,0,0,0)
