@@ -43,7 +43,7 @@ const Home = ({ movies }) => {
   } = useHomeFetch();
 
   useEffect(() => {
-    //Initialise the home page with static content
+    //Initialise the home page with static content here
     if (state.results.length < 1) setState(movies);
   });
 
