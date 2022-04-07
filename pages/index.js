@@ -21,6 +21,8 @@ import API from "../utils/API";
 
 export const getStaticProps = async () => {
   const movies = await API.fetchMovies("", 1);
+  movies.results = movies.results.map((movie) => ({ ...movie, static: true }));
+
   return {
     props: {
       movies,
@@ -71,6 +73,7 @@ const Home = ({ movies }) => {
                 : "/images/no_image.jpg"
             }
             clickable
+            staticGen={movie.static}
           >
             {movie.title}
           </Thumb>

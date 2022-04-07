@@ -18,6 +18,7 @@ export const useHomeFetch = () => {
     try {
       setError(false);
       setLoading(true);
+      console.log("hits a fetch");
       const movies = await (
         await fetch(`/api/fetch-movies?searchTerm=${searchTerm}&page=${page}`)
       ).json();
@@ -36,11 +37,13 @@ export const useHomeFetch = () => {
 
   //Apply search
   useEffect(() => {
+    if (!searchTerm) return;
     fetchMovies(1, searchTerm);
   }, [searchTerm]);
 
-  //Load more
+  // Load more
   useEffect(() => {
+    console.log("here", isLoadingMore);
     if (!isLoadingMore) return;
     fetchMovies(state.page + 1, searchTerm);
     setIsLoadingMore(false);
