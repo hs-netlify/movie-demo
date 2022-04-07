@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 //config
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../utils/config";
@@ -37,9 +38,18 @@ export const getStaticPaths = async () => {
 };
 
 const Movie = ({ movie }) => {
+  const router = useRouter();
+  const { staticGen } = router.query;
   if (!movie) return <Spinner />;
   return (
     <>
+      <>
+        {staticGen ? (
+          <div className="w-full h-10 flex justify-center items-center bg-red-400 text-white">
+            <span>STATICALLY GENERATED</span>
+          </div>
+        ) : null}
+      </>
       <BreadCrumb movieTitle={movie.original_title} />
       <MovieInfo movie={movie} />/
       <MovieInfoBar
