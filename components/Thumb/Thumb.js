@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 import Link from "next/link";
 
-import { Image } from "./Thumb.styles";
+import { Wrapper, Image } from "./Thumb.styles";
 
 const Thumb = ({ image, movieId, clickable, staticGen }) =>
   clickable ? (
-    <div className="relative">
+    <Wrapper className="relative clickable">
       <>
         {staticGen ? (
           <div className="rounded-full bg-red-400 flex justify-center items-center text-white h-12 w-12 absolute -top-4 -right-4">
@@ -17,11 +17,11 @@ const Thumb = ({ image, movieId, clickable, staticGen }) =>
       </>
 
       <Link href={{ pathname: `/movie/${movieId}`, query: { staticGen } }}>
-        <Image className="clickable" src={image} alt="movie-thumb" />
+        <Image src={image} alt="movie-thumb" />
       </Link>
-    </div>
+    </Wrapper>
   ) : (
-    <div className="relative">
+    <Wrapper className="relative">
       <>
         {staticGen ? (
           <div className="rounded-full bg-red-400 text-white h-12 w-12 absolute -top-2 -right-2">
@@ -30,7 +30,7 @@ const Thumb = ({ image, movieId, clickable, staticGen }) =>
         ) : null}
       </>
       <Image src={image} alt="movie-thumb" />
-    </div>
+    </Wrapper>
   );
 Thumb.propTypes = {
   image: PropTypes.string,

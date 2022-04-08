@@ -9,6 +9,7 @@ const initialState = {
 
 export const useHomeFetch = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [staticInitState, setStaticInitState] = useState();
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -37,7 +38,7 @@ export const useHomeFetch = () => {
 
   //Apply search
   useEffect(() => {
-    if (!searchTerm) return;
+    if (!searchTerm) return setState(staticInitState);
     fetchMovies(1, searchTerm);
   }, [searchTerm]);
 
@@ -52,6 +53,7 @@ export const useHomeFetch = () => {
   return {
     state,
     setState,
+    setStaticInitState,
     loading,
     error,
     searchTerm,

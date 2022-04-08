@@ -37,6 +37,7 @@ const Home = ({ movies }) => {
   const {
     state,
     setState,
+    setStaticInitState,
     loading,
     error,
     searchTerm,
@@ -46,7 +47,11 @@ const Home = ({ movies }) => {
 
   useEffect(() => {
     //Initialise the home page with static content here
-    if (state.results.length < 1) setState(movies);
+
+    if (state.results.length < 1) {
+      setState(movies);
+      setStaticInitState(movies);
+    }
   });
 
   if (error) return <div>Something Went Wrong</div>;
