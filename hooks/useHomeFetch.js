@@ -52,7 +52,7 @@ export const useHomeFetch = () => {
 
   return {
     state,
-    setState,
+    setState, 
     setStaticInitState,
     loading,
     error,
