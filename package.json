@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.1.9",
     "history": "^5.0.0",
     "netlify-identity-widget": "^1.9.2",
+    "netlify-plugin-cloudinary": "^1.0.3",
     "next": "^12.1.4",
     "node-fetch": "^3.2.3",
     "prop-types": "^15.7.2",
