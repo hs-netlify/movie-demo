@@ -9,3 +9,8 @@
   from = '/api/*'
   to = '/.netlify/functions/:splat'
   status = 200
+
+
+[[edge-functions]]
+  function = 'geo-header'
+  path = '/*'
