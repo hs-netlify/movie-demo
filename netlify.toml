@@ -11,6 +11,6 @@
   status = 200
 
 
-[[edge-functions]]
+[[edge_functions]]
   function = 'geo-header'
-  path = '/*'
+  path = '/test'
