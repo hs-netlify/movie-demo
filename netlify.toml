@@ -9,10 +9,3 @@
   from = '/api/*'
   to = '/.netlify/functions/:splat'
   status = 200
-
-[[plugins]]
-  package = "netlify-plugin-cloudinary"
-
-  [plugins.inputs]
-  cloudName = "hs-netlify"
-  deliveryType = "upload"
