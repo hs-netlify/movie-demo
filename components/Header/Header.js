@@ -7,10 +7,7 @@ import { Wrapper, Content, LogoImg, TMDBLogoImg } from "./Header.styles";
 const Header = () => (
   <Wrapper>
     <Content>
-      <Link href="/">
-        <LogoImg src="/images/react-movie-logo.svg" alt="rmdb-logo" />
-      </Link>
-
+      <div></div>
       <TMDBLogoImg src="/images/tmdb_logo.svg" />
     </Content>
   </Wrapper>
