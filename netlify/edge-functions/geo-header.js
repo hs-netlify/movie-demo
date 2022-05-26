@@ -1,5 +1,5 @@
 export default async (request, context) => {
-  console.log("this has been called ok");
+  context.log("This is getting called now");
   return context.json({
     geo: context.geo,
     header: request.headers.get("x-nf-geo"),
