@@ -59,6 +59,7 @@ const Home = ({ movies }) => {
   const randFilm = day <= 19 ? day : 19;
   return (
     <>
+      <div className="w-full text-4xl text-center">EMIS - Movie DB</div>
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
