@@ -59,7 +59,8 @@ const Home = ({ movies }) => {
   const randFilm = day <= 19 ? day : 19;
   return (
     <>
-      <Header>Dev</Header>
+      <div> working</div>
+      <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[randFilm].backdrop_path}`}
