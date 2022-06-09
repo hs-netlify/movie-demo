@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   POSTER_SIZE,
@@ -32,6 +32,13 @@ export const getStaticProps = async () => {
 
 //Hook
 import { useHomeFetch } from "../hooks/useHomeFetch";
+const fetchData = async () => {
+  console.log("fetch is called!");
+  const testData = await (await fetch("api/test-data")).text();
+
+  console.log(testData);
+  return testData;
+};
 
 const Home = ({ movies }) => {
   const {
@@ -44,6 +51,12 @@ const Home = ({ movies }) => {
     setSearchTerm,
     setIsLoadingMore,
   } = useHomeFetch();
+
+  const [testData, setTestData] = useState();
+
+  useEffect(async () => {
+    setTestData(await fetchData());
+  }, []);
 
   useEffect(() => {
     //Initialise the home page with static content here
@@ -59,7 +72,7 @@ const Home = ({ movies }) => {
   const randFilm = day <= 19 ? day : 19;
   return (
     <>
-      <div> working</div>
+      <div> {testData}</div>
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
