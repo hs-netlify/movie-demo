@@ -9,7 +9,7 @@ async function handler(event, context) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-    ttl: 300,
+    ttl: 10,
   };
 }
 
