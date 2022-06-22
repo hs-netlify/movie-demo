@@ -12,8 +12,15 @@ export default async (request, context) => {
     )
   ).json();
 
-  context.log("IP check", context.ip);
-  return allowList.includes(geoCode) && ipCheck.fraud_score < 50
-    ? context.next()
-    : context.rewrite("/access-denied");
+  if (allowList.includes(geoCode) && ipCheck.fraud_score < 50) {
+    context.log(
+      `IP Address ${context.ip} is allowed from ${geoCode}.Fraud score = ${ipCheck.fraud_score}`
+    );
+    return context.next();
+  } else {
+    context.log(
+      `IP Address ${context.ip} is denied from ${geoCode}. Fraud score = ${ipCheck.fraud_score}`
+    );
+    return context.rewrite("/access-denied");
+  }
 };
