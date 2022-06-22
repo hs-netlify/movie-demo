@@ -13,4 +13,4 @@
 
 [[edge_functions]]
   function = 'geo-header'
-  path = '/test'
+  path = '/'
