@@ -3,11 +3,6 @@ export default async (request, context) => {
   const allowList = ["GB"];
 
   return allowList.includes(context.geo?.country?.code)
-    ? context.next
-    : context.rewrite("/something-to-serve-with-a-rewrite");
-
-  // return context.json({
-  //   geo: context.geo,
-  //   header: request.headers.get("x-nf-geo"),
-  // });
+    ? context.next()
+    : context.rewrite("/access-denied");
 };
