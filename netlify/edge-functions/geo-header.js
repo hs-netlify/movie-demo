@@ -1,5 +1,4 @@
 export default async (request, context) => {
-  context.log("Geo header function called: ", JSON.stringify(context.geo));
   const allowList = ["GB"];
 
   // Uses https://www.ipqualityscore.com/documentation/proxy-detection/overview
@@ -12,15 +11,25 @@ export default async (request, context) => {
     )
   ).json();
 
-  if (allowList.includes(geoCode) && ipCheck.fraud_score < 50) {
+  const correctGeo = allowList.includes(geoCode);
+  const lowFraudScore = ipCheck.fraud_score < 50;
+
+  if (correctGeo && lowFraudScore) {
     context.log(
-      `IP Address ${context.ip} is allowed from ${geoCode}.Fraud score = ${ipCheck.fraud_score}`
+      `Access Granted - IP Address ${context.ip} is allowed from ${geoCode}.Fraud score = ${ipCheck.fraud_score}`
     );
     return context.next();
   } else {
-    context.log(
-      `IP Address ${context.ip} is denied from ${geoCode}. Fraud score = ${ipCheck.fraud_score}`
-    );
+    !correctGeo
+      ? context.log(
+          `Access Denied - Accessing site from blocked location: ${geoCode}`
+        )
+      : "";
+    !lowFraudScore
+      ? context.log(
+          `Access Denied - Accessing site from IP with high fraud score (${ipCheck.fraud_score}), suspected VPN`
+        )
+      : "";
     return context.rewrite("/access-denied");
   }
 };
