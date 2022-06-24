@@ -1,11 +1,16 @@
 export default async (request, context) => {
-  const geoAllowList = ["GB"];
-  const ipAllowList = ["82.14.159.63"];
+  // const geoAllowList = ["GB"];
+  // const ipAllowList = ["82.14.159.63"];
 
-  // Uses https://www.ipqualityscore.com/documentation/proxy-detection/overview
+  const geoAllowList = JSON.parse(Deno.env.get("GEO_ALLOW_LIST"));
+  const ipAllowList = JSON.parse(Deno.env.get("IP_ALLOW_LIST"));
 
   const geoCode = context.geo?.country?.code;
   const ip = context.ip;
+
+  console.log(typeof geoAllowList);
+
+  // Uses https://www.ipqualityscore.com/documentation/proxy-detection/overview
 
   const ipCheck = await (
     await fetch(
@@ -19,7 +24,7 @@ export default async (request, context) => {
 
   if (correctGeo && lowFraudScore && correctIp) {
     context.log(
-      `Access Granted - IP Address ${context.ip} is allowed from ${geoCode}.Fraud score = ${ipCheck.fraud_score}`
+      `Access Granted - IP Address ${ip} is allowed from ${geoCode}.Fraud score = ${ipCheck.fraud_score}`
     );
     return context.next();
   } else {
@@ -27,9 +32,7 @@ export default async (request, context) => {
     !correctGeo
       ? errors.push(` Accessing site from blocked location: ${geoCode}`)
       : "";
-    !correctIp
-      ? errors.push(` IP address not on allowed list: ${geoCode}`)
-      : "";
+    !correctIp ? errors.push(` IP address not on allowed list: ${ip}`) : "";
     !lowFraudScore
       ? errors.push(
           ` Accessing site from IP with high fraud score (${ipCheck.fraud_score}), suspected VPN`
