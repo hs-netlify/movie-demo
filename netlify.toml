@@ -10,7 +10,7 @@
   to = '/.netlify/functions/:splat'
   status = 200
 
-[[edge_functions]]
-  function = 'geo-header'
-  path = '/'
 
+[[edge_functions]]
+  function = "edge-protection"
+  path = "/*"
