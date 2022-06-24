@@ -1,7 +1,7 @@
 export default async (request, context) => {
   //Import allow lists from Env variables
-  const geoAllowList = JSON.parse(Deno.env.get("GEO_ALLOW_LIST"));
-  const ipAllowList = JSON.parse(Deno.env.get("IP_ALLOW_LIST"));
+  const geoAllowList = JSON.parse(Deno.env.get("GEO_ALLOW_LIST") || "null");
+  const ipAllowList = JSON.parse(Deno.env.get("IP_ALLOW_LIST") || "null");
 
   //Fetch geo code and IP from incoming request
   const geoCode = context.geo?.country?.code;
@@ -15,8 +15,8 @@ export default async (request, context) => {
   ).json();
 
   //Complete checks against lists and fraud score
-  const correctGeo = geoAllowList.includes(geoCode);
-  const correctIp = ipAllowList.includes(ip);
+  const correctGeo = geoAllowList ? geoAllowList.includes(geoCode) : true;
+  const correctIp = ipAllowList ? ipAllowList.includes(ip) : true;
   const lowFraudScore = ipCheck.fraud_score < 50;
 
   //Allows/Denies Access and rewrites to respective pages.
@@ -27,10 +27,12 @@ export default async (request, context) => {
     return context.next();
   } else {
     let errors = [];
-    !correctGeo
+    !correctGeo && geoAllowList
       ? errors.push(` Accessing site from blocked location: ${geoCode}`)
       : "";
-    !correctIp ? errors.push(` IP address not on allowed list: ${ip}`) : "";
+    !correctIp && ipAllowList
+      ? errors.push(` IP address not on allowed list: ${ip}`)
+      : "";
     !lowFraudScore
       ? errors.push(
           ` Accessing site from IP with high fraud score (${ipCheck.fraud_score}), suspected VPN`
