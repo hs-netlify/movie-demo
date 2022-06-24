@@ -1,7 +1,4 @@
 export default async (request, context) => {
-  // const geoAllowList = ["GB"];
-  // const ipAllowList = ["82.14.159.63"];
-
   const geoAllowList = JSON.parse(Deno.env.get("GEO_ALLOW_LIST"));
   const ipAllowList = JSON.parse(Deno.env.get("IP_ALLOW_LIST"));
 
