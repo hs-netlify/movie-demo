@@ -24,6 +24,8 @@ export const getServerSideProps = async (context) => {
   return { props: { movie } };
 };
 
+//Test
+
 // export const getServerSideProps = async () => {
 //   const movies = await API.fetchMovies("", 1);
 //   const paths = movies
