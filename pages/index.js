@@ -62,7 +62,6 @@ const Home = ({ movies }) => {
 
   useEffect(() => {
     //Initialise the home page with static content here
-cd
     if (state.results.length < 1) {
       setState(movies);
       setStaticInitState(movies);
