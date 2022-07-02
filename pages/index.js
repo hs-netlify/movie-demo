@@ -74,7 +74,7 @@ cd
   const randFilm = day <= 19 ? day : 19;
   return (
     <>
-    <div>TEST!</div>
+
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
