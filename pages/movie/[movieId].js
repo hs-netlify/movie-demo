@@ -16,13 +16,13 @@ import Actor from "../../components/Actor/Actor";
 
 import API from "../../utils/API";
 
-export const getServerSideProps = async (context) => {
-  const movieId = context.params.movieId;
+// export const getServerSideProps = async (context) => {
+//   const movieId = context.params.movieId;
 
-  const movie = await API.detailedMovieFetch(movieId);
+//   const movie = await API.detailedMovieFetch(movieId);
 
-  return { props: { movie } };
-};
+//   return { props: { movie } };
+// };
 
 //Test
 
