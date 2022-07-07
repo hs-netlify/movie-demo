@@ -14,8 +14,3 @@
 [[edge_functions]]
   path= '/'
   function = 'edge-protection'
-
-
-  [[edge_functions]]
-  path= '/*'
-  function = 'edge-protection'
