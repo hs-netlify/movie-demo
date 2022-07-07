@@ -21,7 +21,7 @@ export const getStaticProps = async (context) => {
 
   const movie = await API.detailedMovieFetch(movieId);
 
-  return { props: { movie }, revalidate: 300 };
+  return { props: { movie }, revalidate: 3600 };
 };
 
 export const getStaticPaths = async () => {
