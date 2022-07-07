@@ -34,7 +34,6 @@ export const getStaticProps = async () => {
 import { useHomeFetch } from "../hooks/useHomeFetch";
 import { getRoutingItems } from "next/dist/shared/lib/router/utils";
 const fetchData = async () => {
-  console.log("fetch is called!");
   const testData = await (await fetch("api/test-data")).text();
 
   console.log(testData);
@@ -73,7 +72,6 @@ const Home = ({ movies }) => {
   const randFilm = day <= 19 ? day : 19;
   return (
     <>
-
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage

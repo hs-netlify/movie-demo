@@ -16,47 +16,28 @@ import Actor from "../../components/Actor/Actor";
 
 import API from "../../utils/API";
 
-// export const getServerSideProps = async (context) => {
-//   const movieId = context.params.movieId;
-
-//   const movie = await API.detailedMovieFetch(movieId);
-
-//   return { props: { movie } };
-// };
-
-//Test
-
-export const getStaticProps = async (context) => {
-  const movies = await API.fetchMovies("", 1);
-  const moviesIds = movies.results.map((movie) => movie.id);
+export const getServerSideProps = async (context) => {
   const movieId = context.params.movieId;
 
   const movie = await API.detailedMovieFetch(movieId);
 
-  // if (moviesIds.includes(movieId)) {
-  //   return {
-  //     props: {
-  //       movies,
-  //     },
-  //   };
-  // } else {
-  return {
-    props: {
-      movies,
-    },
-    revalidate: 3600,
-  };
-  // }
+  return { props: { movie } };
 };
 
-export const getStaticPaths = async () => {
-  const paths = [...Array(100).keys()].map((x) => ({
-    params: {
-      movieId: (x++).toString(),
-    },
-  }));
-  return { paths, fallback: "blocking" };
-};
+//Test
+
+// export const getServerSideProps = async () => {
+//   const movies = await API.fetchMovies("", 1);
+//   const paths = movies
+//     ? movies.results.map((movie) => ({
+//         params: {
+//           movieId: `${movie.id}`,
+//         },
+//       }))
+//     : [];
+
+//   return { paths, fallback: true };
+// };
 
 const Movie = ({ movie }) => {
   const router = useRouter();
