@@ -50,7 +50,7 @@ export const getStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  const paths = [...Array(1000000).keys()].map((x) => ({
+  const paths = [...Array(100).keys()].map((x) => ({
     params: {
       movieId: (x++).toString(),
     },
