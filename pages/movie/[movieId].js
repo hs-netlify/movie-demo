@@ -26,9 +26,9 @@ export const getServerSideProps = async (context) => {
 
 //Test
 
-export const getStaticProps = () => {
+export const getStaticProps = async () => {
   const movies = await API.fetchMovies("", 1);
-  const moviesIds = movies.results.map((movie) => (movie.id));
+  const moviesIds = movies.results.map((movie) => movie.id);
   const movieId = context.params.movieId;
 
   const movie = await API.detailedMovieFetch(movieId);
@@ -37,15 +37,15 @@ export const getStaticProps = () => {
     return {
       props: {
         movies,
-      }
-    }
+      },
+    };
   } else {
     return {
       props: {
         movies,
       },
-      revalidate: 3600
-    }
+      revalidate: 3600,
+    };
   }
 };
 
