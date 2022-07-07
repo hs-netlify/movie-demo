@@ -26,6 +26,38 @@ export const getServerSideProps = async (context) => {
 
 //Test
 
+export const getStaticProps = () => {
+  const movies = await API.fetchMovies("", 1);
+  const moviesIds = movies.results.map((movie) => (movie.id));
+  const movieId = context.params.movieId;
+
+  const movie = await API.detailedMovieFetch(movieId);
+
+  if (moviesIds.contains(movieId)) {
+    return {
+      props: {
+        movies,
+      }
+    }
+  } else {
+    return {
+      props: {
+        movies,
+      },
+      revalidate: 3600
+    }
+  }
+};
+
+export const getStaticPaths = async () => {
+  const paths = [...Array(1000000).keys()].map((x) => ({
+    params: {
+      id: x++,
+    },
+  }));
+  return { paths, fallback: "blocking" };
+};
+
 // export const getServerSideProps = async () => {
 //   const movies = await API.fetchMovies("", 1);
 //   const paths = movies
