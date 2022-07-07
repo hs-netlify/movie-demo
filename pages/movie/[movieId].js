@@ -33,20 +33,20 @@ export const getStaticProps = async (context) => {
 
   const movie = await API.detailedMovieFetch(movieId);
 
-  if (moviesIds.includes(movieId)) {
-    return {
-      props: {
-        movies,
-      },
-    };
-  } else {
-    return {
-      props: {
-        movies,
-      },
-      revalidate: 3600,
-    };
-  }
+  // if (moviesIds.includes(movieId)) {
+  //   return {
+  //     props: {
+  //       movies,
+  //     },
+  //   };
+  // } else {
+  return {
+    props: {
+      movies,
+    },
+    revalidate: 3600,
+  };
+  // }
 };
 
 export const getStaticPaths = async () => {
