@@ -11,3 +11,6 @@
   status = 200
 
 
+[[edge-functions]]
+  path= '/*'
+  function = 'edge-protection'
