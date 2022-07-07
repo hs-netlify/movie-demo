@@ -26,14 +26,14 @@ import API from "../../utils/API";
 
 //Test
 
-export const getStaticProps = async () => {
+export const getStaticProps = async (context) => {
   const movies = await API.fetchMovies("", 1);
   const moviesIds = movies.results.map((movie) => movie.id);
   const movieId = context.params.movieId;
 
   const movie = await API.detailedMovieFetch(movieId);
 
-  if (moviesIds.contains(movieId)) {
+  if (moviesIds.includes(movieId)) {
     return {
       props: {
         movies,
@@ -52,24 +52,11 @@ export const getStaticProps = async () => {
 export const getStaticPaths = async () => {
   const paths = [...Array(1000000).keys()].map((x) => ({
     params: {
-      id: x++,
+      movieId: (x++).toString(),
     },
   }));
   return { paths, fallback: "blocking" };
 };
-
-// export const getServerSideProps = async () => {
-//   const movies = await API.fetchMovies("", 1);
-//   const paths = movies
-//     ? movies.results.map((movie) => ({
-//         params: {
-//           movieId: `${movie.id}`,
-//         },
-//       }))
-//     : [];
-
-//   return { paths, fallback: true };
-// };
 
 const Movie = ({ movie }) => {
   const router = useRouter();
