@@ -33,12 +33,12 @@ export const getStaticProps = async () => {
 //Hook
 import { useHomeFetch } from "../hooks/useHomeFetch";
 import { getRoutingItems } from "next/dist/shared/lib/router/utils";
-const fetchData = async () => {
-  const testData = await (await fetch("api/test-data")).text();
+// const fetchData = async () => {
+//   const testData = await (await fetch("api/test-data")).text();
 
-  console.log(testData);
-  return testData;
-};
+//   console.log(testData);
+//   return testData;
+// };
 
 const Home = ({ movies }) => {
   const {
