@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 //config
@@ -39,7 +39,24 @@ export const getStaticPaths = async () => {
 const Movie = ({ movie }) => {
   const router = useRouter();
   const { staticGen } = router.query;
+  const [loaded, setLoaded] = useState(false);
+  const [ssrImage, setSsrImage] = useState();
+
+  const fetchSsrImage = async () => {
+    let image = await (await fetch("/api/random-movie")).text();
+
+    console.log(image);
+    setLoaded(true);
+    return image;
+  };
+
+  useEffect(async () => {
+    let image = await fetchSsrImage();
+    setSsrImage(image);
+  }, []);
+
   if (!movie) return <Spinner />;
+
   return (
     <>
       <>
@@ -56,6 +73,14 @@ const Movie = ({ movie }) => {
         budget={movie.budget}
         revenue={movie.revenue}
       />
+      {ssrImage ? (
+        <div
+          className="product-des"
+          dangerouslySetInnerHTML={{ __html: ssrImage }}
+        ></div>
+      ) : (
+        ""
+      )}
       <Grid header="Actors">
         {movie.actors.map((actor) => (
           <Actor
