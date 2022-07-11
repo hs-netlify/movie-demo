@@ -21,12 +21,12 @@ export const getStaticProps = async (context) => {
 
   const movie = await API.detailedMovieFetch(movieId);
 
-  return { props: { movie } };
+  return { props: { movie }, revalidate: 60 };
 };
 
 export const getStaticPaths = async () => {
   const paths = [];
-  for (let i = 1; i < 100; i++) {
+  for (let i = 1; i < 2; i++) {
     let moviePage = await API.fetchMovies("", i);
     moviePage.results.forEach((movie) => {
       paths.push({ params: { movieId: movie.id.toString() } });
@@ -35,21 +35,6 @@ export const getStaticPaths = async () => {
 
   return { paths, fallback: "blocking" };
 };
-
-//Test
-
-// export const getServerSideProps = async () => {
-//   const movies = await API.fetchMovies("", 1);
-//   const paths = movies
-//     ? movies.results.map((movie) => ({
-//         params: {
-//           movieId: `${movie.id}`,
-//         },
-//       }))
-//     : [];
-
-//   return { paths, fallback: true };
-// };
 
 const Movie = ({ movie }) => {
   const router = useRouter();
