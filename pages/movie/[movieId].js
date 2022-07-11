@@ -26,7 +26,7 @@ export const getStaticProps = async (context) => {
 
 export const getStaticPaths = async () => {
   const paths = [];
-  for (let i = 1; i < 11; i++) {
+  for (let i = 1; i < 100; i++) {
     let moviePage = await API.fetchMovies("", i);
     moviePage.results.forEach((movie) => {
       paths.push({ params: { movieId: movie.id.toString() } });
