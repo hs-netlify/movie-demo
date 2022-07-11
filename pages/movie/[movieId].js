@@ -16,12 +16,24 @@ import Actor from "../../components/Actor/Actor";
 
 import API from "../../utils/API";
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
   const movieId = context.params.movieId;
 
   const movie = await API.detailedMovieFetch(movieId);
 
   return { props: { movie } };
+};
+
+export const getStaticPaths = async () => {
+  const paths = [];
+  for (let i = 1; i < 11; i++) {
+    let moviePage = await API.fetchMovies("", i);
+    moviePage.results.forEach((movie) => {
+      paths.push({ params: { movieId: movie.id.toString() } });
+    });
+  }
+
+  return { paths, fallback: "blocking" };
 };
 
 //Test
