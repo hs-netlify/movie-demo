@@ -9,3 +9,15 @@
   from = '/api/*'
   to = '/.netlify/functions/:splat'
   status = 200
+
+
+[[headers]]
+  for = "/_next/image"
+  [headers.values]
+      Test-next-image = 'true'
+
+[[headers]]
+  for = "/_ipx/*"
+  [headers.values]
+    Test-ipx = "true"
+
