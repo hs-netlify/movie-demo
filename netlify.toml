@@ -11,11 +11,11 @@
   status = 200
 
 [[redirects]]
-   from: '/_next/image*',
-   query: { url: ':url', w: ':width', q: ':quality' },
-   to: '/_ipx/w_:width,q_:quality/:url',
-   status: 301
-   headers: {
-    Test-header= 'working
+   from = '/_next/image*',
+   query = { url: ':url', w: ':width', q: ':quality' },
+   to = '/_ipx/w_:width,q_:quality/:url',
+   status = 301
+   headers = {
+    Test-header = 'working'
    }
 
