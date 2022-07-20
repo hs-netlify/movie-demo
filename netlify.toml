@@ -10,14 +10,12 @@
   to = '/.netlify/functions/:splat'
   status = 200
 
-
-[[headers]]
-  for = "/_next/image*"
-  [headers.values]
-      Test-next-image = 'true'
-
-[[headers]]
-  for = "/_ipx/*"
-  [headers.values]
-    Test-ipx = "true"
+[[redirects]]
+   from: '/_next/image*',
+   query: { url: ':url', w: ':width', q: ':quality' },
+   to: '/_ipx/w_:width,q_:quality/:url',
+   status: 301
+   headers: {
+    Test-header= 'working
+   }
 
