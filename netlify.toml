@@ -11,10 +11,14 @@
   status = 200
 
 [[headers]]
- for = '/_ipx/*'
- [headers.values]
-     X-Test-Header = 'test'
+  for = "/_next/*"
+  [headers.values]
+    X-Henry-Test = "DENY"
 
+[[headers]]
+  for = "/_ipx/*"
+  [headers.values]
+    X-Henry-Test = "DENY"
 [[headers]]
   for = "/*"
   [headers.values]
