@@ -11,6 +11,6 @@
   status = 200
 
 [[headers]]
- for = '/*'
+ for = '/_ipx/*'
  [headers.values]
      X-Test-Header = 'test'
