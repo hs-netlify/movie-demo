@@ -10,16 +10,3 @@
   to = '/.netlify/functions/:splat'
   status = 200
 
-[[headers]]
-  for = "/_next/*"
-  [headers.values]
-    X-Henry-Test = "DENY"
-
-[[headers]]
-  for = "/_ipx/*"
-  [headers.values]
-    X-Henry-Test = "DENY"
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Henry-Test = "DENY"
