@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Link from "next/link";
-import Image from "next/image";
-import { Wrapper } from "./Thumb.styles";
+import { Wrapper, Image } from "./Thumb.styles";
 
 const Thumb = ({ image, movieId, clickable, staticGen }) =>
   clickable ? (
@@ -20,13 +19,7 @@ const Thumb = ({ image, movieId, clickable, staticGen }) =>
         className="relative"
         href={{ pathname: `/movie/${movieId}`, query: { staticGen } }}
       >
-        <Image
-          width="100%"
-          height="100%"
-          className="h-full w-full max-w-3xl object-cover rounded-2xl"
-          src={image}
-          alt="movie-thumb"
-        />
+        <Image src={image} alt="movie-thumb" />
       </Link>
     </Wrapper>
   ) : (
