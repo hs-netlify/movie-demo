@@ -14,14 +14,3 @@
   path = "/"
   function = "a-b-test"
 
-[[redirects]]
-  from = '/test-a/*'
-  to = 'https://a--next-movie-db.netlify.app/:splat'
-  status = 301
-  force = true
-
-[[redirects]]
-  from = '/test-b/*'
-  to = 'https://b--next-movie-db.netlify.app/:splat'
-  status = 301 
-  force = true
