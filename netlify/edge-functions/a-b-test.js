@@ -2,10 +2,10 @@ export default async (request, context) => {
   // look for existing "test_bucket" cookie
   const bucketName = "test_bucket";
   const bucket = context.cookies.get(bucketName);
-  const url = context.url
+  const url = context.url;
   // return here if we find a cookie
   if (bucket) {
-    const page = await fetch(`https://${bucket}--next-movie-db.netlify.app/`;
+    const page = await fetch(`https://${bucket}--next-movie-db.netlify.app/`);
     return Response(page);
   }
 
@@ -23,8 +23,9 @@ export default async (request, context) => {
     name: bucketName,
     value: newBucketValue,
   });
-      const page2 = await fetch(`https://${bucketValue}--next-movie-db.netlify.app/`;
+  const page2 = await fetch(
+    `https://${bucketValue}--next-movie-db.netlify.app/`
+  );
 
-
-  return Response(page2)
+  return Response(page2);
 };
