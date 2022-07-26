@@ -23,5 +23,5 @@ export default async (request, context) => {
     value: newBucketValue,
   });
 
-  return context.rewrite(`/${bucket}`);
+  return context.rewrite(`/${newBucketValue}`);
 };
