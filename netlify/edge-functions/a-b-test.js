@@ -5,7 +5,7 @@ export default async (request, context) => {
 
   // return here if we find a cookie
   if (bucket) {
-    return context.rewrite(`https://${bucket}--next-movie-db.netlify.app`);
+    return context.rewrite(`/${bucket}`);
   }
 
   // if no "test_bucket" cookie is found, assign the user to a bucket
@@ -23,5 +23,5 @@ export default async (request, context) => {
     value: newBucketValue,
   });
 
-  return context.rewrite(`/$${bucket}`);
+  return context.rewrite(`/${bucket}`);
 };
