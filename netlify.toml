@@ -11,7 +11,7 @@
   status = 200
 
 [[edge_functions]]
-  path = "/*"
+  path = "/"
   function = "a-b-test"
 
 [[redirects]]
