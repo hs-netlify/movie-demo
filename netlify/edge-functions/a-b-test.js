@@ -15,7 +15,7 @@ export default async (request, context) => {
   // get a random number between (0-1)
   // this is a basic example and you may want to experiment
   const random = Math.random();
-  const newBucketValue = random <= weighting ? "a" : "b";
+  const newBucketValue = random <= weighting ? "test-a" : "test-b";
 
   // set the new "test_bucket" cookie
   context.cookies.set({
@@ -23,5 +23,5 @@ export default async (request, context) => {
     value: newBucketValue,
   });
 
-  return context.rewrite(`https://${bucket}--next-movie-db.netlify.app`);
+  return context.rewrite(`/$${bucket}`);
 };
