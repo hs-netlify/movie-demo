@@ -1,0 +1,6 @@
+.next
+node_modules
+test
+lib
+demos
+plugin/src/templates/edge

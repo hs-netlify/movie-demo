@@ -1,0 +1,108 @@
+{
+  "name": "netlify-plugin-nextjs",
+  "private": true,
+  "description": "Run Next.js seamlessly on Netlify",
+  "scripts": {
+    "build:demo": "cd demos/default && npm run build",
+    "cy:open": "cypress open --config-file cypress/config/all.json",
+    "dev:demo": "next dev demos/default",
+    "format": "run-s format:check-fix:*",
+    "format:ci": "run-s format:check:*",
+    "format:check-fix:lint": "run-e format:check:lint format:fix:lint",
+    "format:check:lint": "cross-env-shell eslint $npm_package_config_eslint",
+    "format:fix:lint": "cross-env-shell eslint --fix $npm_package_config_eslint",
+    "format:check-fix:prettier": "run-e format:check:prettier format:fix:prettier",
+    "format:check:prettier": "cross-env-shell prettier --check $npm_package_config_prettier",
+    "format:fix:prettier": "cross-env-shell prettier --write $npm_package_config_prettier",
+    "build": "npm run -w @netlify/plugin-nextjs build",
+    "postinstall": "run-s build install-husky",
+    "install-husky": "if-env CI=1 || husky install node_modules/@netlify/eslint-config-node/.husky",
+    "test": "run-s build:demo test:jest",
+    "test:jest": "jest",
+    "test:jest:update": "jest --updateSnapshot",
+    "test:update": "run-s build build:demo test:jest:update"
+  },
+  "config": {
+    "eslint": "--cache --format=codeframe --max-warnings=0 \"{plugin,src,scripts,tests,.github}/**/*.{ts,js,md,html}\" \"*.{ts,js,md,html}\" \".*.{ts,js,md,html}\"",
+    "prettier": "--loglevel=warn \"{plugin,src,scripts,tests,.github}/**/*.{ts,js,md,yml,json,html}\" \"*.{ts,js,yml,json,html}\" \".*.{ts,js,yml,json,html}\" \"!package-lock.json\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netlify/netlify-plugin-nextjs.git"
+  },
+  "keywords": [
+    "nextjs",
+    "netlify",
+    "next",
+    "netlify-plugin"
+  ],
+  "author": "lindsaylevine",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/netlify/netlify-plugin-nextjs/issues"
+  },
+  "homepage": "https://github.com/netlify/netlify-plugin-nextjs#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-typescript": "^7.16.0",
+    "@delucis/if-env": "^1.1.2",
+    "@netlify/build": "^27.5.0",
+    "@netlify/eslint-config-node": "^7.0.0",
+    "@testing-library/cypress": "^8.0.1",
+    "@types/fs-extra": "^9.0.13",
+    "@types/jest": "^27.0.2",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^17.0.10",
+    "@types/react": "^17.0.38",
+    "babel-jest": "^27.2.5",
+    "chance": "^1.1.8",
+    "cpy": "^8.1.2",
+    "cypress": "^9.0.0",
+    "eslint-config-next": "^12.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-unicorn": "^43.0.2",
+    "husky": "^7.0.4",
+    "jest": "^27.0.0",
+    "netlify-plugin-cypress": "^2.2.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "rimraf": "^3.0.2",
+    "sass": "^1.49.0",
+    "sharp": "^0.30.4",
+    "tmp-promise": "^3.0.2",
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "next": "^12.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/test/**/*.js",
+      "**/test/**/*.ts",
+      "!**/test/fixtures/**",
+      "!**/test/sample/**"
+    ],
+    "transform": {
+      "\\.[jt]sx?$": "babel-jest"
+    },
+    "verbose": true,
+    "testTimeout": 60000
+  },
+  "workspaces": [
+    "plugin",
+    "demos/default",
+    "demos/static-root",
+    "demos/next-export",
+    "demos/base-path",
+    "demos/plugin-wrapper",
+    "demos/server-components",
+    "demos/middleware",
+    "demos/custom-routes"
+  ]
+}
