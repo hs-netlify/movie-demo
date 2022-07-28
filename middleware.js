@@ -1,31 +1,34 @@
 import { NextResponse } from "next/server";
 
-// This function can be marked `async` if using `await` inside
-export function middleware(request) {
-  const path = request.nextUrl.pathname;
-
-  console.log(path);
+export default function middleware(req) {
+  const { pathname } = req.nextUrl;
 
   const bucketName = "test_bucket";
-  const bucket = request.cookies.get(bucketName);
-  console.log("bucket", bucket);
 
-  if (bucket) {
-    return NextResponse.rewrite(
-      new URL(path, `https://${bucket}--next-movie-db.netlify.app/`)
-    );
-  } else {
-    const weighting = 0.5;
+  // Get the bucket from the cookie
+  let bucket = req.cookies.get(bucketName);
+  let hasBucket = !!bucket;
 
-    const random = Math.random();
-    const newBucketValue = random <= weighting ? "a" : "b";
-
-    let response = NextResponse.rewrite(
-      new URL(path, `https://${newBucketValue}--next-movie-db.netlify.app/`)
-    );
-    response.cookies.set(bucketName, newBucketValue);
-    console.log("Response", response);
-
-    return response;
+  // If there's no active bucket in cookies or its value is invalid, get a new one
+  if (!bucket) {
+    bucket = Math.random() <= 0.5 ? "a" : "b";
+    hasBucket = false;
   }
+
+  // Create a rewrite to the page matching the bucket
+
+  const path = req.nextUrl.pathname;
+  let res = NextResponse.rewrite(
+    `https://${bucket}--next-movie-db.netlify.app${path}`
+  );
+
+  // Add the bucket to the response cookies if it's not there
+  // or if its value was invalid
+  if (!hasBucket) {
+    res.cookies.set(bucketName, bucket);
+  }
+
+  console.log("URL", `https://${bucket}--next-movie-db.netlify.app${path}`);
+
+  return res;
 }
