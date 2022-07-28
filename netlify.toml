@@ -9,8 +9,3 @@
   from = '/api/*'
   to = '/.netlify/functions/:splat'
   status = 200
-
-[[edge_functions]]
-  path = "/"
-  function = "a-b-test"
-
