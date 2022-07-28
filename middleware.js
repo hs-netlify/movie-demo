@@ -19,7 +19,7 @@ export default function middleware(req) {
   const pathArr = path.split("/");
   if (pathArr[1] === "_next") {
     let newPath = pathArr.splice(2);
-    console.log("New path", newPath.join("/"));
+    // console.log("New path", newPath.join("/"));
     url = `https://${bucket}--next-movie-db.netlify.app/${newPath.join("/")}`;
   } else {
     url = `https://${bucket}--next-movie-db.netlify.app${path}`;
@@ -32,7 +32,7 @@ export default function middleware(req) {
     res.cookies.set(bucketName, bucket);
   }
 
-  console.log(url);
+  // console.log(url);
 
   return res;
 }
