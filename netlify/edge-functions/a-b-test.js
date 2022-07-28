@@ -8,7 +8,7 @@ export default async (request, context) => {
     const page = await (
       await fetch(`https://${bucket}--next-movie-db.netlify.app/`)
     ).text();
-    return page;
+    return new Response(page);
   }
 
   // if no "test_bucket" cookie is found, assign the user to a bucket
@@ -29,5 +29,5 @@ export default async (request, context) => {
     await fetch(`https://${bucketValue}--next-movie-db.netlify.app/`)
   ).text();
 
-  return page2;
+  return new Response(page2);
 };
