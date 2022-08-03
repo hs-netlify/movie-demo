@@ -2,10 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Link from "next/link";
-<<<<<<< HEAD
-
-=======
->>>>>>> a674b920a803594a7c60dedf3eb4f32a9ff74bdf
 import { Wrapper, Image } from "./Thumb.styles";
 
 const Thumb = ({ image, movieId, clickable, staticGen }) =>

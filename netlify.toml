@@ -10,8 +10,6 @@
   to = '/.netlify/functions/:splat'
   status = 200
 
-[[redirects]]
-  from = 'https://:subdomain.netlify.app/*'
-  to = 'https://:subdomain.netlify-se-demo.com:splat'
-  status = 301
-  force = true
+[[edge_functions]]
+  path = '/*'
+  function = 'subdomain-redirect'
