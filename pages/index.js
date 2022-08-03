@@ -56,13 +56,9 @@ const Home = ({ movies }) => {
   const [testData, setTestData] = useState();
   const [time, setTime] = useState();
 
-  useEffect(async () => {
-    setTestData(await fetchData());
-  }, []);
 
   useEffect(() => {
     //Initialise the home page with static content here
-
     if (state.results.length < 1) {
       setState(movies);
       setStaticInitState(movies);

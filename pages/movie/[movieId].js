@@ -21,20 +21,21 @@ export const getStaticProps = async (context) => {
 
   const movie = await API.detailedMovieFetch(movieId);
 
-  return { props: { movie }, revalidate: 3600 };
+
+  return { props: { movie }, revalidate: 60 };
+
 };
 
 export const getStaticPaths = async () => {
-  const movies = await API.fetchMovies("", 1);
-  const paths = movies
-    ? movies.results.map((movie) => ({
-        params: {
-          movieId: `${movie.id}`,
-        },
-      }))
-    : [];
+  const paths = [];
+  for (let i = 1; i < 2; i++) {
+    let moviePage = await API.fetchMovies("", i);
+    moviePage.results.forEach((movie) => {
+      paths.push({ params: { movieId: movie.id.toString() } });
+    });
+  }
 
-  return { paths, fallback: true };
+  return { paths, fallback: "blocking" };
 };
 
 const Movie = ({ movie }) => {

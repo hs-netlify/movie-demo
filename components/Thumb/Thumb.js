@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Link from "next/link";
-
 import { Wrapper, Image } from "./Thumb.styles";
 
 const Thumb = ({ image, movieId, clickable, staticGen }) =>
@@ -16,7 +15,10 @@ const Thumb = ({ image, movieId, clickable, staticGen }) =>
         ) : null}
       </>
 
-      <Link href={{ pathname: `/movie/${movieId}`, query: { staticGen } }}>
+      <Link
+        className="relative"
+        href={{ pathname: `/movie/${movieId}`, query: { staticGen } }}
+      >
         <Image src={image} alt="movie-thumb" />
       </Link>
     </Wrapper>
