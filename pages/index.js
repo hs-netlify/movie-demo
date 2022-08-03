@@ -56,7 +56,6 @@ const Home = ({ movies }) => {
   const [testData, setTestData] = useState();
   const [time, setTime] = useState();
 
-
   useEffect(() => {
     //Initialise the home page with static content here
     if (state.results.length < 1) {
@@ -70,6 +69,7 @@ const Home = ({ movies }) => {
   const randFilm = day <= 19 ? day : 19;
   return (
     <>
+      <div>some text</div>
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
