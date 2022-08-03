@@ -32,6 +32,14 @@ export const getStaticProps = async () => {
 
 //Hook
 import { useHomeFetch } from "../hooks/useHomeFetch";
+import { getRoutingItems } from "next/dist/shared/lib/router/utils";
+const fetchData = async () => {
+  console.log("fetch is called!");
+  const testData = await (await fetch("api/test-data")).text();
+
+  console.log(testData);
+  return testData;
+};
 
 const Home = ({ movies }) => {
   const {
@@ -47,6 +55,7 @@ const Home = ({ movies }) => {
 
   const [testData, setTestData] = useState();
   const [time, setTime] = useState();
+
 
   useEffect(() => {
     //Initialise the home page with static content here
