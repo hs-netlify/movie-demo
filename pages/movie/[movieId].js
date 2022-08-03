@@ -47,7 +47,11 @@ const Movie = ({ movie }) => {
           <div className="w-full h-10 flex justify-center items-center bg-red-400 text-white">
             <span>STATICALLY GENERATED</span>
           </div>
-        ) : null}
+        ) : (
+          <div className="w-full h-10 flex justify-center items-center bg-red-400 text-white">
+            <span>GENERATED USING ISR</span>
+          </div>
+        )}
       </>
       <BreadCrumb movieTitle={movie.original_title} />
       <MovieInfo movie={movie} />/
