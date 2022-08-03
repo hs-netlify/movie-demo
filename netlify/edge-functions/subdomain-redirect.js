@@ -11,6 +11,6 @@ export default (request, context) => {
     return Response.redirect(`https://${subdomain[1]}.netlify-se-demo.com/`);
   } else {
     console.log("Request allowed through");
-    return context.next();
+    return await context.next();
   }
 };
