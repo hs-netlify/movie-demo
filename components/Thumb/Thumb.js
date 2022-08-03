@@ -8,13 +8,9 @@ import { Wrapper, Image } from "./Thumb.styles";
 const Thumb = ({ image, movieId, clickable, staticGen }) =>
   clickable ? (
     <Wrapper className="relative clickable">
-      <>
-        {staticGen ? (
-          <div className="rounded-full bg-red-400 flex justify-center items-center text-white h-12 w-12 absolute -top-4 -right-4">
-            <span>SSR</span>
-          </div>
-        ) : null}
-      </>
+      <div className="rounded-full bg-red-400 flex justify-center items-center text-white h-12 w-12 absolute -top-4 -right-4">
+        <span>SSR</span>
+      </div>
 
       <Link href={{ pathname: `/movie/${movieId}`, query: { staticGen } }}>
         <Image src={image} alt="movie-thumb" />
