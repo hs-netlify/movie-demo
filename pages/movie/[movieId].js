@@ -26,32 +26,12 @@ export const getServerSideProps = async (context) => {
 
 //Test
 
-// export const getServerSideProps = async () => {
-//   const movies = await API.fetchMovies("", 1);
-//   const paths = movies
-//     ? movies.results.map((movie) => ({
-//         params: {
-//           movieId: `${movie.id}`,
-//         },
-//       }))
-//     : [];
-
-//   return { paths, fallback: true };
-// };
-
 const Movie = ({ movie }) => {
   const router = useRouter();
   const { staticGen } = router.query;
   if (!movie) return <Spinner />;
   return (
     <>
-      <>
-        {staticGen ? (
-          <div className="w-full h-10 flex justify-center items-center bg-red-400 text-white">
-            <span>STATICALLY GENERATED</span>
-          </div>
-        ) : null}
-      </>
       <BreadCrumb movieTitle={movie.original_title} />
       <MovieInfo movie={movie} />/
       <MovieInfoBar

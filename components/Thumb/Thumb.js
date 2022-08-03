@@ -11,7 +11,7 @@ const Thumb = ({ image, movieId, clickable, staticGen }) =>
       <>
         {staticGen ? (
           <div className="rounded-full bg-red-400 flex justify-center items-center text-white h-12 w-12 absolute -top-4 -right-4">
-            <span>SSG</span>
+            <span>SSR</span>
           </div>
         ) : null}
       </>
