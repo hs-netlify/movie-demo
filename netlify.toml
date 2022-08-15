@@ -12,5 +12,5 @@
 
 [[redirects]]
   from = '/test/*'
-  to = "https://docs.netlify.com/:splat"
+  to = "https://google.com/:splat"
   status = 301
