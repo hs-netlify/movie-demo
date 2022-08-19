@@ -1,0 +1,16 @@
+query ExampleQuery @netlify(id: null, doc: null) {
+  __typename
+}
+
+query Leads @netlify(id: """bf34b42c-0930-4985-b044-d2f1a0c2bce7""", doc: """List leads on Salesforce, ordered by when they were created.""") {
+  salesforce {
+    leads(sortByField: CREATED_DATE, orderBy: DESC, first: 10) {
+      nodes {
+        firstName
+        lastName
+        email
+        createdDate
+      }
+    }
+  }
+}
