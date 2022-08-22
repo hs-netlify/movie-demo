@@ -52,6 +52,75 @@ errors?: Array<GraphQLError>;
       options?: NetlifyGraphFunctionOptions
     ): Promise<ExampleQuery>;
 
+export type NpmDownloadsInput = {
+  /**
+ * Find the package by its name
+ */
+ "name": string
+};
+    
+    export type NpmDownloads = {
+  /**
+  * Any data from the function will be returned here
+  */
+data: {
+  /**
+  * The root for npm queries
+  */
+npm: {
+  /**
+  * Find a npm package member by its npm name, e.g. `"fela"`
+  */
+package?: {
+  /**
+  * Summary download stats for a package
+  */
+downloads: {
+  /**
+  * The download status for this package over the last month
+  */
+lastMonth?: {
+  /**
+  * The download stats for the given package and range. Check out explanation of how [npm download counts work](http://blog.npmjs.org/post/92574016600/numeric-precision-matters-how-npm-download-counts), including "what counts as a download?"
+  */
+count: number;
+};
+  /**
+  * The download status for this package over the last day
+  */
+lastDay?: {
+  /**
+  * The download stats for the given package and range. Check out explanation of how [npm download counts work](http://blog.npmjs.org/post/92574016600/numeric-precision-matters-how-npm-download-counts), including "what counts as a download?"
+  */
+count: number;
+};
+  /**
+  * The download status for this package over the last week
+  */
+lastWeek?: {
+  /**
+  * The download stats for the given package and range. Check out explanation of how [npm download counts work](http://blog.npmjs.org/post/92574016600/numeric-precision-matters-how-npm-download-counts), including "what counts as a download?"
+  */
+count: number;
+};
+};
+};
+};
+};
+  /**
+  * Any errors from the function will be returned here
+  */
+errors?: Array<GraphQLError>;
+};
+    
+    /**
+     * Get the downloads for a package (last week, last month, and in the last 24 hours) from npm given the package name.
+     */
+    export function fetchNpmDownloads(
+      variables: NpmDownloadsInput,
+      options?: NetlifyGraphFunctionOptions
+    ): Promise<NpmDownloads>;
+
 
     export type Leads = {
   /**
@@ -112,6 +181,10 @@ errors?: Array<GraphQLError>;
     * 
     */
     fetchExampleQuery: typeof fetchExampleQuery,
+  /**
+    * Get the downloads for a package (last week, last month, and in the last 24 hours) from npm given the package name.
+    */
+    fetchNpmDownloads: typeof fetchNpmDownloads,
   /**
     * List leads on Salesforce, ordered by when they were created.
     */

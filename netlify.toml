@@ -5,7 +5,6 @@
 [functions]
   node_bundler = "esbuild"
 
-
-
 [graph]
   codeGenerator = "netlify-builtin:nextjs"
+

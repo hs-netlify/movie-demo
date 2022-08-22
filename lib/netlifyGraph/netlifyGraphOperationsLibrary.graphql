@@ -2,7 +2,7 @@ query ExampleQuery @netlify(id: null, doc: null) {
   __typename
 }
 
-query Leads @netlify(id: """bf34b42c-0930-4985-b044-d2f1a0c2bce7""", doc: """List leads on Salesforce, ordered by when they were created.""") {
+query Leads @netlify(id: """d4bff3f1-da7e-4873-899d-59294e0184c3""", doc: """List leads on Salesforce, ordered by when they were created.""") {
   salesforce {
     leads(sortByField: CREATED_DATE, orderBy: DESC, first: 10) {
       nodes {
@@ -10,6 +10,26 @@ query Leads @netlify(id: """bf34b42c-0930-4985-b044-d2f1a0c2bce7""", doc: """Lis
         lastName
         email
         createdDate
+      }
+    }
+  }
+}
+
+query NpmDownloads($name: String!) @netlify(id: """3f3b20b1-6e7f-4b9b-82a8-0adf805e6642""", doc: """
+Get the downloads for a package (last week, last month, and in the last 24 hours) from npm given the package name.
+""") {
+  npm {
+    package(name: $name) {
+      downloads {
+        lastMonth {
+          count
+        }
+        lastDay {
+          count
+        }
+        lastWeek {
+          count
+        }
       }
     }
   }
