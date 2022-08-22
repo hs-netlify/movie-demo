@@ -1,4 +1,3 @@
-
 const NetlifyGraph = require("../../lib/netlifyGraph");
 
 exports.handler = async (req, res) => {
@@ -10,18 +9,22 @@ exports.handler = async (req, res) => {
 
   //// If you want to use the API with your own access token:
   // accessToken = process.env.NETLIFY_GRAPH_TOKEN;
-      
+
   const eventBodyJson = req.body || {};
 
-  const name = typeof req.query?.name === 'string' ? req.query?.name : req.query?.name[0];
+  const name =
+    typeof req.query?.name === "string" ? req.query?.name : req.query?.name[0];
 
   if (name === undefined || name === null) {
     return res.status(422).json({
-        errors: ["You must supply parameters for: `name`"],
+      errors: ["You must supply parameters fo!r: `name`"],
     });
   }
 
-  const { errors, data } = await NetlifyGraph.fetchNpmDownloads({ name: name }, {accessToken: accessToken}); 
+  const { errors, data } = await NetlifyGraph.fetchNpmDownloads(
+    { name: name },
+    { accessToken: accessToken }
+  );
 
   if (errors) {
     console.error(JSON.stringify(errors, null, 2));
@@ -32,13 +35,14 @@ exports.handler = async (req, res) => {
   res.setHeader("Content-Type", "application/json");
 
   return res.status(200).json({
-    errors, data
+    errors,
+    data,
   });
 };
 
 exports.default = exports.handler;
 
-/** 
+/**
  * Client-side invocations:
  * Call your Netlify function from the browser with this helper:
  */
