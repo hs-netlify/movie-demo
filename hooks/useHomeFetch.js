@@ -21,7 +21,9 @@ export const useHomeFetch = () => {
       setLoading(true);
       console.log("hits a fetch");
       const movies = await (
-        await fetch(`/api/fetch-movies?searchTerm=${searchTerm}&page=${page}`)
+        await fetch(
+          `/.netlify/functions/fetch-movies?searchTerm=${searchTerm}&page=${page}`
+        )
       ).json();
 
       setState((prev) => ({
@@ -52,7 +54,7 @@ export const useHomeFetch = () => {
 
   return {
     state,
-    setState, 
+    setState,
     setStaticInitState,
     loading,
     error,
