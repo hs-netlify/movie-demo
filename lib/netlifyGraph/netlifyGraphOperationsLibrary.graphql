@@ -1,0 +1,36 @@
+query ExampleQuery @netlify(id: null, doc: null) {
+  __typename
+}
+
+query Leads @netlify(id: """f76e4f86-edf9-40aa-afa6-fb07a724487d""", doc: """List leads on Salesforce, ordered by when they were created.""") {
+  salesforce {
+    leads(sortByField: CREATED_DATE, orderBy: DESC, first: 10) {
+      nodes {
+        firstName
+        lastName
+        email
+        createdDate
+      }
+    }
+  }
+}
+
+query NpmDownloads($name: String!) @netlify(id: """98317dc4-b298-467d-a6a6-f8fa28f1f9c5""", doc: """
+Get the downloads for a package (last week, last month, and in the last 24 hours) from npm given the package name.
+""") {
+  npm {
+    package(name: $name) {
+      downloads {
+        lastMonth {
+          count
+        }
+        lastDay {
+          count
+        }
+        lastWeek {
+          count
+        }
+      }
+    }
+  }
+}
