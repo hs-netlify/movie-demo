@@ -17,7 +17,7 @@ exports.handler = async (req, res) => {
 
   if (name === undefined || name === null) {
     return res.status(422).json({
-      errors: ["You must supply parameters fo!r: `name`"],
+      errors: ["You must supply parameters for: `name`"],
     });
   }
 
