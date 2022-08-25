@@ -22,19 +22,21 @@ import API from "../utils/API";
 export const getStaticProps = async () => {
   const movies = await API.fetchMovies("", 1);
   movies.results = movies.results.map((movie) => ({ ...movie, static: true }));
-
+  const title = "TITLE NOT CHANGED";
   return {
     props: {
       movies,
+      title,
     },
-    revalidate: 60,
   };
 };
+
+export const dynamicEdgeProps = () => {};
 
 //Hook
 import { useHomeFetch } from "../hooks/useHomeFetch";
 
-const Home = ({ movies }) => {
+const Home = ({ movies, title }) => {
   const {
     state,
     setState,
@@ -62,6 +64,9 @@ const Home = ({ movies }) => {
   const randFilm = day <= 19 ? day : 19;
   return (
     <>
+      <div className="w-full text-center text-4xl bg-red-500 text-white">
+        {title}
+      </div>
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
