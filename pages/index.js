@@ -22,11 +22,11 @@ import API from "../utils/API";
 export const getStaticProps = async () => {
   const movies = await API.fetchMovies("", 1);
   movies.results = movies.results.map((movie) => ({ ...movie, static: true }));
-  const title = "TITLE NOT CHANGED";
+  const titleProp = "TITLE NOT CHANGED";
   return {
     props: {
       movies,
-      title,
+      titleProp,
     },
   };
 };
@@ -36,7 +36,7 @@ export const dynamicEdgeProps = () => {};
 //Hook
 import { useHomeFetch } from "../hooks/useHomeFetch";
 
-const Home = ({ movies, title }) => {
+const Home = ({ movies, titleProp }) => {
   const {
     state,
     setState,
@@ -50,6 +50,11 @@ const Home = ({ movies, title }) => {
 
   const [testData, setTestData] = useState();
   const [time, setTime] = useState();
+  const [title, setTitle] = useState();
+
+  useEffect(() => {
+    setTitle(titleProp);
+  });
 
   useEffect(() => {
     //Initialise the home page with static content here

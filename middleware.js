@@ -5,9 +5,7 @@ import { MiddlewareRequest } from "@netlify/next";
 export async function middleware(NextRequest) {
   const request = new MiddlewareRequest(NextRequest);
   const response = await request.next();
-  response.setPageProp("title", "WOW A NEW TITLE!");
-  console.log("Gets here");
-  console.log(response);
+  response.setPageProp("titleProp", "WOW A NEW TITLE!");
   return response;
 }
 
