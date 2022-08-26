@@ -31,7 +31,15 @@ export const getStaticProps = async () => {
   };
 };
 
-export const dynamicEdgeProps = () => {};
+export const dynamicEdgeProps = () => {
+  return "working";
+  // return async function middleware(NextRequest) {
+  //   const request = new MiddlewareRequest(NextRequest);
+  //   const response = await request.next();
+  //   response.setPageProp("titleProp", "WOW A NEW TITLE!");
+  //   return response;
+  // };
+};
 
 //Hook
 import { useHomeFetch } from "../hooks/useHomeFetch";
