@@ -13,4 +13,4 @@
 
 [[edge_functions]]
    path = '/*'
-   funciton = 'edge-protection'
+   function = 'edge-protection'
