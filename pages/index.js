@@ -56,7 +56,7 @@ const Home = ({ movies }) => {
 
   if (error) return <div>Something Went Wrong</div>;
   const day = new Date().getDate();
-  const randFilm = day <= 18 ? day : 19;
+  const randFilm = day <= 19 ? day : 19;
   return (
     <>
       <Header></Header>
