@@ -2,6 +2,7 @@ const { isCompositeComponent } = require("react-dom/test-utils");
 
 module.exports = {
   onPreBuild: ({ netlifyConfig }) => {
+    console.log("Env var:", netlifyConfig.build.environment.SKIP_EF);
     if (!netlifyConfig.build.environment.SKIP_EF == "true") {
       console.log("Deploying Edge functions for redirects");
       if (netlifyConfig.edge_functions) {
