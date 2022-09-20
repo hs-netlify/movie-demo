@@ -1,6 +1,6 @@
 module.exports = {
   onPreBuild: ({ netlifyConfig }) => {
-    if (!netlifyConfig.build.environment.SKIP_EF) {
+    if (!netlifyConfig.build.environment.SKIP_EF == "true") {
       if (netlifyConfig.edge_functions) {
         netlifyConfig["edge_functions"].push({
           path: "/*",

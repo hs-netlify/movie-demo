@@ -14,5 +14,5 @@
   package = "/plugins/load-ef"
 
 [context.production.environment]
-   SKIP_EF = true 
+   SKIP_EF = 'true' 
 
