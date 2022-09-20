@@ -15,7 +15,3 @@
 
 [context.production.environment]
    SKIP_EF = 'true' 
-
-[[edge_functions]]
-   path = '/*'
-   function = 'example-ef'
