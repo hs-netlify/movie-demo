@@ -10,4 +10,9 @@
   to = '/.netlify/functions/:splat'
   status = 200
 
+[[plugins]]
+  package = "/plugins/load-ef"
+
+[context.production.environment]
+   SKIP_EF = true 
 
