@@ -1,4 +1,5 @@
 export default async (request, context) => {
+  console.log("working");
   //Import allow lists from Env variables
   const geoAllowList = JSON.parse(Deno.env.get("GEO_ALLOW_LIST") || "null");
   const ipAllowList = JSON.parse(Deno.env.get("IP_ALLOW_LIST") || "null");
