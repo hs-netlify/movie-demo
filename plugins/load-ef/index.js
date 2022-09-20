@@ -20,7 +20,7 @@ module.exports = {
         console.log("Edge function deployed");
       }
     } else {
-      conosle.log("Skipping Edge functions deployment");
+      console.log("Skipping Edge functions deployment");
     }
   },
 };
