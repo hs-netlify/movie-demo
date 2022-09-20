@@ -18,3 +18,7 @@
 [context.branch-deploy.edge_functions]
     path = '/*'
     function = 'edge-protection'
+
+[context.dev.edge_functions]
+    path = '/*'
+    function = 'edge-protection'
