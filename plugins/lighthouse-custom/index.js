@@ -295,7 +295,7 @@ module.exports = {
       if (error) {
         throw error;
       }
-      execSync(`rm ${constants.PUBLISH_DIR}`);
+      execSync(`rm -fr ${constants.PUBLISH_DIR}`);
       execSync(`cp -r ${constants.PUBLISH_DIR}_temp ${constants.PUBLISH_DIR}`);
       show({ summary, extraData });
     } catch (error) {
