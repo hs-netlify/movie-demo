@@ -19,7 +19,7 @@ import Footer from "../components/Footer/Footer";
 
 import API from "../utils/API";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const movies = await API.fetchMovies("", 1);
   movies.results = movies.results.map((movie) => ({ ...movie, static: true }));
 
@@ -27,7 +27,6 @@ export const getStaticProps = async () => {
     props: {
       movies,
     },
-    revalidate: 60,
   };
 };
 
