@@ -45,7 +45,7 @@ const runLighthouse = async (browserPath, url) => {
       ],
       logLevel,
     });
-    console.log("Browser:", browserPath, " and url: ", url);
+
     const results = await lighthouse(url, {
       port: chrome.port,
       output: "html",

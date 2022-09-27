@@ -9,45 +9,7 @@ const { getBrowserPath, runLighthouse } = require("./lighthouse");
 const { makeReplacements } = require("./replacements");
 const { time } = require("console");
 const execSync = require("child_process").execSync;
-const spawnSync = require("child_process").spawnSync;
 const fetch = require("node-fetch");
-
-// const getServer = ({ serveDir, auditUrl }) => {
-//   if (auditUrl) {
-//     // return a mock server for readability
-//     const server = {
-//       listen: async (func) => {
-//         console.log(`Scanning url ${chalk.magenta(auditUrl)}`);
-//         await func();
-//       },
-//       close: () => undefined,
-//       url: auditUrl,
-//     };
-//     return { server };
-//   }
-
-//   if (!serveDir) {
-//     throw new Error("Empty publish dir");
-//   }
-
-//   const app = express();
-//   app.use(compression());
-//   app.use(express.static(serveDir));
-
-//   const port = 5000;
-//   const host = "localhost";
-//   const server = {
-//     listen: (func) => {
-//       console.log(
-//         `Serving and scanning site from directory ${chalk.magenta(serveDir)}`
-//       );
-//       return app.listen(port, host, func);
-//     },
-//     close: (instance) => instance.close(),
-//     url: `http://${host}:${port}`,
-//   };
-//   return { server };
-// };
 
 const createServer = async () => {
   execSync("netlify dev > /dev/null 2>&1 &");
@@ -164,22 +126,16 @@ const getUtils = ({ utils }) => {
 
 const runAudit = async ({ path, url, thresholds, output_path }) => {
   try {
-    // const { server } = getServer({ serveDir: path, auditUrl: url });
     const browserPath = await getBrowserPath();
 
     const { error, results } = await new Promise(async (resolve) => {
-      // const instance = server.listen(async () => {
-      //   try {
-      console.log("Inside promise");
-      const results = await runLighthouse(browserPath, url);
-      console.log("Gets here results: ", results);
-      resolve({ error: false, results });
-      // } catch (error) {
-      //   resolve({ error });
-      // } finally {
-      //   server.close(instance);
-      // }
-      // });
+      try {
+        const results = await runLighthouse(browserPath, url);
+
+        resolve({ error: false, results });
+      } catch (error) {
+        resolve({ error });
+      }
     });
 
     if (error) {
@@ -328,7 +284,6 @@ module.exports = {
           });
         }
       }
-      console.log("data", data);
 
       const { error, summary, extraData } = processResults({
         data,
