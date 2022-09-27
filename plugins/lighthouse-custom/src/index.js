@@ -1,17 +1,16 @@
 //require("dotenv").config();
 const { join, dirname } = require("path");
-// const express = require("express");
-// const compression = require("compression");
-const chalk = require("chalk");
+
+const chalk = require("../node_modules/chalk");
 const fs = require("fs").promises;
-const minify = require("html-minifier").minify;
+const minify = require("../node_modules/html-minifier").minify;
 const { getConfiguration } = require("./config");
 const { getBrowserPath, runLighthouse } = require("./lighthouse");
 const { makeReplacements } = require("./replacements");
 const { time } = require("console");
 const execSync = require("child_process").execSync;
 const spawnSync = require("child_process").spawnSync;
-const fetch = require("node-fetch");
+const fetch = require("../node_modules/node-fetch");
 
 // const getServer = ({ serveDir, auditUrl }) => {
 //   if (auditUrl) {
