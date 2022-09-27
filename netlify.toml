@@ -10,3 +10,5 @@
   to = '/.netlify/functions/:splat'
   status = 200
 
+[[plugins]]
+   package="/plugins/lighthouse-custom"

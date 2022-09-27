@@ -1,0 +1,18 @@
+name: lighthouse-custom
+inputs:
+  # Deprecated, use audits
+  - name: audit_url
+    required: false
+    description: Url of the site to audit, defaults to scanning the current built version of the site
+
+  - name: thresholds
+    required: false
+    description: Key value mapping of thresholds that will fail the build when not passed.
+
+  - name: output_path
+    required: false
+    description: Path to save the generated HTML Lighthouse report
+
+  - name: audits
+    required: false
+    description: A list of audits to perform. Each list item is an object with either a url/path to scan and an optional thresholds mapping.
