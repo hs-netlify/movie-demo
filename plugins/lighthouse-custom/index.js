@@ -50,8 +50,6 @@ const fetch = require("node-fetch");
 // };
 
 const createServer = async () => {
-  await execSync("sudo npm install -g netlify-cli");
-  let dir = await spawnSync("pwd");
   execSync("netlify dev > /dev/null 2>&1 &");
   console.log("Initiating server");
   let ready = false;
