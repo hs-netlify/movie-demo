@@ -11,7 +11,8 @@ const { time } = require("console");
 const execSync = require("child_process").execSync;
 const fetch = require("node-fetch");
 
-const createServer = async () => {
+const createServer = async (publishDir) => {
+  execSync(`cp -r ${publishDir} ${publishDir}_temp`);
   execSync("netlify dev > /dev/null 2>&1 &");
   console.log("Initiating server");
   let ready = false;
@@ -242,7 +243,7 @@ module.exports = {
 
     try {
       console.log("creating Server");
-      await createServer();
+      await createServer(constants.PUBLISH_DIR);
       const { audits } = getConfiguration({
         constants,
         inputs,
@@ -294,7 +295,8 @@ module.exports = {
       if (error) {
         throw error;
       }
-
+      execSync(`rm ${constant.PUBLISH_DIR}`);
+      execSync(`cp -r ${constant.PUBLISH_DIR}_temp ${publishDir}`);
       show({ summary, extraData });
     } catch (error) {
       if (error.details) {
