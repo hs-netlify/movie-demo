@@ -12,7 +12,7 @@ const execSync = require("child_process").execSync;
 const fetch = require("node-fetch");
 
 const createServer = async (publishDir) => {
-  execSync(`cp -r ${publishDir} ${publishDir}_temp`);
+  execSync(`mv ${publishDir} ${publishDir}_temp`);
   execSync("netlify dev > /dev/null 2>&1 &");
   console.log("Initiating server");
   let ready = false;
@@ -296,7 +296,7 @@ module.exports = {
         throw error;
       }
       execSync(`rm -fr ${constants.PUBLISH_DIR}`);
-      execSync(`cp -r ${constants.PUBLISH_DIR}_temp ${constants.PUBLISH_DIR}`);
+      execSync(`mv ${constants.PUBLISH_DIR}_temp ${constants.PUBLISH_DIR}`);
       show({ summary, extraData });
     } catch (error) {
       if (error.details) {
