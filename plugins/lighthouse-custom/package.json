@@ -32,9 +32,4 @@
     "netlify-plugin-cypress": "^2.2.0",
     "prettier": "^2.0.0"
   }
-  // "husky": {
-  //   "hooks": {
-  //     "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-  //   }
-  // }
 }
