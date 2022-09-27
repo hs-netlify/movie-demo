@@ -3,12 +3,8 @@
   "version": "0.0.1",
   "description": "Netlify Plugin to run Lighthouse on each build",
   "main": "src/index.js",
-  "files": [
-    "manifest.yml",
-    "src"
-  ],
   "author": "netlify-labs",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.0",
     "chrome-launcher": "^0.15.0",
