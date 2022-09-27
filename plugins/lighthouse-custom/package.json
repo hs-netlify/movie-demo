@@ -1,31 +1,18 @@
 {
   "name": "lighthouse-custom",
-  "version": "0.0.1",
-  "description": "Netlify Plugin to run Lighthouse on each build",
-  "main": "src/index.js",
-  "author": "netlify-labs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "HS",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^4.1.0",
-    "chrome-launcher": "^0.15.0",
-    "compression": "^1.7.4",
+    "chalk": "^4.1.2",
+    "console": "^0.7.2",
     "html-minifier": "^4.0.0",
-    "lighthouse": "^9.6.3",
     "node-fetch": "^2.6.7",
-    "puppeteer": "^16.0.0"
-  },
-  "engines": {
-    "node": ">=14.15 <18"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^17.0.0",
-    "@commitlint/config-conventional": "^17.0.0",
-    "cypress": "^9.0.0",
-    "eslint": "^7.0.0",
-    "eslint-plugin-cypress": "^2.11.2",
-    "husky": "^8.0.1",
-    "jest": "^28.0.0",
-    "netlify-plugin-cypress": "^2.2.0",
-    "prettier": "^2.0.0"
+    "puppeteer": "^18.0.5"
   }
 }
