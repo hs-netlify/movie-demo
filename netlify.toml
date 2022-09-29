@@ -8,4 +8,4 @@
   status = 200
 
 [[plugins]]
-   package="/plugins/lighthouse-custom"
+   package="/plugins/netlify-plugin-lighthouse"
