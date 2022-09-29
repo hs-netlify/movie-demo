@@ -1,0 +1,9 @@
+node_modules
+.env
+.vscode
+yarn-error.log
+# Local Netlify folder
+.netlify
+reports
+cypress/videos
+cypress/screenshots
