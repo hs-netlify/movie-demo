@@ -1,5 +1,7 @@
 export default async (request, context) => {
-  let buckets = JSON.parse(Deno.env.get("AB_TEST_LIST") || "null");
+  //let buckets = JSON.parse(Deno.env.get("AB_TEST_LIST") || "null");
+
+  console.log("env vars", process.env);
 
   //If environment variable not set return standard page
   if (!buckets) {
@@ -22,17 +24,8 @@ export default async (request, context) => {
   let bucket = context.cookies.get(bucketName);
   let hasBucket = !!bucket;
 
-  //Check cookie is active cookie
-  if (bucket) {
-    const isActiveCookie = buckets.find((b) => b.url == bucket);
-    console.log("Here", isActiveCookie);
-    if (!isActiveCookie) {
-      hasBucket = false;
-    }
-  }
-
   //Assign a bucket if the cookie has not been set
-  if (!hasBucket) {
+  if (!bucket) {
     let randomNumber = Math.random();
     let totalWeighting = 0;
     buckets.forEach((b) => {
@@ -41,6 +34,7 @@ export default async (request, context) => {
         randomNumber <= totalWeighting + b.weighting * weightingMultiplier
       ) {
         bucket = b.url;
+        console.log(bucket);
         hasBucket = false;
       }
       totalWeighting += b.weighting * weightingMultiplier;
@@ -52,7 +46,6 @@ export default async (request, context) => {
 
   //Set cookie if new bucket has been set
   if (!hasBucket) {
-    context.cookies.delete(bucketName);
     context.cookies.set({ name: bucketName, value: bucket });
   }
 
