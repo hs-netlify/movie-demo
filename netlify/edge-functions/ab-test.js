@@ -1,6 +1,7 @@
 export default async (request, context) => {
   let buckets = JSON.parse(Deno.env.get("AB_TEST_LIST") || "null");
 
+  console.log(buckets);
   //If environment variable not set return standard page
   if (!buckets) {
     return context.next();
@@ -17,6 +18,10 @@ export default async (request, context) => {
   const bucketName = "netlify-split-test";
 
   const requestUrl = new URL(request.url);
+
+  if (requestUrl.pathname.startsWith("/_next/images")) {
+    return context.next();
+  }
 
   // Get the bucket from the cookie
   let bucket = context.cookies.get(bucketName);
