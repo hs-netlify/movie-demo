@@ -19,6 +19,7 @@ export default async (request, context) => {
 
   const requestUrl = new URL(request.url);
 
+  //Only required for next
   if (requestUrl.pathname.startsWith("/_next/images")) {
     return context.next();
   }
