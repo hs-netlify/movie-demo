@@ -1,4 +1,4 @@
-export default async (request, context) => {
+export default async (npm dntlrequest, context) => {
   let buckets = JSON.parse(Deno.env.get("AB_TEST_LIST") || "null");
 
   console.log(buckets);
@@ -7,7 +7,7 @@ export default async (request, context) => {
     return context.next();
   }
 
-  //Ensure weighting adds up to 1
+  //Ensure weighting adds up t//bui
   let totalWeighting = buckets.reduce(
     (tot, bucket) => tot + bucket.weighting,
     0
