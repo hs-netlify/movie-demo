@@ -1,7 +1,6 @@
 export default async (request, context) => {
   let buckets = JSON.parse(Deno.env.get("AB_TEST_LIST") || "null");
 
-  console.log(buckets);
   //If environment variable not set return standard page
   if (!buckets) {
     return context.next();
@@ -31,7 +30,6 @@ export default async (request, context) => {
   //Check cookie is active cookie
   if (bucket) {
     const isActiveCookie = buckets.find((b) => b.url == bucket);
-    console.log("Here", isActiveCookie);
     if (!isActiveCookie) {
       hasBucket = false;
     }
