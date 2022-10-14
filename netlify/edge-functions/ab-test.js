@@ -1,4 +1,4 @@
-export default async (npm dntlrequest, context) => {
+export default async (request, context) => {
   let buckets = JSON.parse(Deno.env.get("AB_TEST_LIST") || "null");
 
   console.log(buckets);
