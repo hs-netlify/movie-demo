@@ -11,3 +11,5 @@
   status = 200
 
 
+[graph]
+  codeGenerator = "netlify-builtin:nextjs"
