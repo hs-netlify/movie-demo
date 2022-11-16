@@ -61,5 +61,9 @@ export default async (request, context) => {
   }
 
   let proxyResponse = await fetch(url);
+  console.log(proxyResponse);
+  if (proxyResponse.status !== 200) {
+    return context.next();
+  }
   return new Response(proxyResponse.body, proxyResponse);
 };

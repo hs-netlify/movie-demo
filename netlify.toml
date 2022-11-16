@@ -5,7 +5,11 @@
 [functions]
   node_bundler = "esbuild"
 
-
+[[redirects]]
+ from='/test'
+ to='https://google.com'
+ status=301
+ force=true
 [[edge_functions]]
     path='/*'
     function='ab-test'
