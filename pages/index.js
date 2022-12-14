@@ -45,9 +45,6 @@ const Home = ({ movies }) => {
     setIsLoadingMore,
   } = useHomeFetch();
 
-  const [testData, setTestData] = useState();
-  const [time, setTime] = useState();
-
   useEffect(() => {
     //Initialise the home page with static content here
     if (state.results.length < 1) {
