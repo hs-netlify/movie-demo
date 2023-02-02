@@ -27,6 +27,7 @@ export const getStaticProps = async () => {
     props: {
       movies,
     },
+    revalidate: 10,
   };
 };
 
@@ -59,7 +60,6 @@ const Home = ({ movies }) => {
   return (
     <>
       <Header></Header>
-      <div className="text-center bg-red-400 text-xl">New Header</div>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[randFilm].backdrop_path}`}
