@@ -58,6 +58,9 @@ const Home = ({ movies }) => {
   const randFilm = day <= 19 ? day : 19;
   return (
     <>
+      <div className="text-center bg-red-400 text-white text-3xl">
+        DEV BRANCH
+      </div>
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
