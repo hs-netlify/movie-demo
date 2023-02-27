@@ -9,9 +9,3 @@
   from = '/api/*'
   to = '/.netlify/functions/:splat'
   status = 200
-
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-   Basic-Auth = "test:password"
