@@ -11,3 +11,7 @@
   status = 200
 
 
+[[headers]]
+   for='/*'
+   [[headers.value]]
+   Basic-Auth: 'admin:Password'
