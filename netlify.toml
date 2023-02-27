@@ -12,6 +12,6 @@
 
 
 [[headers]]
-   for='/*'
-   [[headers.value]]
-   Basic-Auth: 'admin:Password'
+  for = "/*"
+  [headers.values]
+   Basic-Auth = "test:password"
