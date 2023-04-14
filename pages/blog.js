@@ -1,17 +1,23 @@
 const Blog = () => <div>My blog that works</div>;
 
-const delayedFetch = new Promise(async (resolve) => {
-  const res = await fetch("https://www.gov.uk/bank-holidays.json");
-  const data = await res.json();
+export async function getStaticProps() {
+  // Add your data fetching logic here
 
-  setTimeout(() => {
-    resolve(data);
-  }, 2000);
-});
+  async function dummyAwaitFunction() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("Dummy data fetched after a delay");
+      }, 2000); // 2 seconds delay
+    });
+  }
 
-export const getStaticProps = async () => {
-  const delayedData = await delayedFetch();
-  return { props: {} };
-};
+  await dummyAwaitFunction();
+
+  return {
+    props: {
+      // Pass your fetched data as props to your component
+    },
+  };
+}
 
 export default Blog;
