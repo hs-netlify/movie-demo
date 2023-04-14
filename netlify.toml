@@ -5,7 +5,13 @@
 [functions]
   node_bundler = "esbuild"
 
+  [[redirects]]
+  from='/api/*'
+  to='/.netlify/functions/:splat'
+
+
+
 [[redirects]]
-  from = '/api/*'
-  to = '/.netlify/functions/:splat'
+  from = '/blog/*'
+  to = 'https://problogger.com/blog/:splat'
   status = 200
