@@ -11,7 +11,7 @@ const delayedFetch = new Promise(async (resolve) => {
 
 export const getStaticProps = async () => {
   const delayedData = await delayedFetch();
-  return { props: delayedData };
+  return { props: {} };
 };
 
 export default Blog;
