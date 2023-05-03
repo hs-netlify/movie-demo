@@ -59,7 +59,7 @@ const Home = ({ movies }) => {
   return (
     <>
       <div className="text-center bg-red-400 text-white text-4xl">
-        DEV BRANCH
+        DEV BRANCH!
       </div>
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
