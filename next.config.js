@@ -15,14 +15,6 @@ module.exports = {
       ? "https://db.netlify-se-test.com"
       : process.env.DEPLOY_PRIME_URL
     : undefined,
-  async rewrites() {
-    return [
-      {
-        source: "/_next/data/:path*",
-        destination: `${base}/_next/data/:path*`,
-      },
-    ];
-  },
   images: {
     domains: ["image.tmdb.org"],
   },
