@@ -5,11 +5,7 @@
 [functions]
   node_bundler = "esbuild"
 
-[[context.production.redirects]]
-  from = '/_next/data/*'
-  to = 'https://db.netlify-se-test.com/_next/data/:splat'
-  status = 301
-  force=true
+
 
 [[redirects]]
   from = '/api/*'
