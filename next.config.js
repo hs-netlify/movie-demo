@@ -5,7 +5,7 @@ module.exports = {
   },
 
   assetPrefix: process.env.NETLIFY
-    ? process.env.CONTEXT === production
+    ? process.env.CONTEXT === "production"
       ? "https://db.netlify-se-test.com"
       : process.env.DEPLOY_PRIME_URL
     : undefined,
