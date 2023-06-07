@@ -4,7 +4,7 @@ module.exports = {
     return "const-id";
   },
 
-  basePath: process.env.NETLIFY
+  assetPrefix: process.env.NETLIFY
     ? process.env.CONTEXT === "production"
       ? "https://db.netlify-se-test.com"
       : process.env.DEPLOY_PRIME_URL
