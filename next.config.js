@@ -4,7 +4,9 @@ module.exports = {
     return "const-id";
   },
 
-  assetPrefix: "shop",
+  assetPrefix: true
+    ? "https://lucent-travesseiro-4df994.netlify.app/"
+    : undefined,
   images: {
     domains: ["image.tmdb.org"],
   },
