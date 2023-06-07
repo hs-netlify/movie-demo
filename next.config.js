@@ -4,7 +4,7 @@ module.exports = {
     return "const-id";
   },
 
-  assetPrefix: process.env.NETLIFY ? process.env.DEPLOY_PRIME_URL : undefined,
+  assetPrefix: process.env.NETLIFY ? process.env.URL : undefined,
   images: {
     domains: ["image.tmdb.org"],
   },
