@@ -1,7 +1,8 @@
-const base =   process.env.NETLIFY  ? process.env.CONTEXT === "production"
-      ? "https://db.netlify-se-test.com"
-      : process.env.DEPLOY_PRIME_URL
-    : undefined,
+const base = process.env.NETLIFY
+  ? process.env.CONTEXT === "production"
+    ? "https://db.netlify-se-test.com"
+    : process.env.DEPLOY_PRIME_URL
+  : undefined;
 
 module.exports = {
   generateBuildId: async () => {
@@ -17,9 +18,9 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/_next/data/:path*',
-        to: `${base}/_next/data/:path*`
-      }
+        source: "/_next/data/:path*",
+        to: `${base}/_next/data/:path*`,
+      },
     ];
   },
   images: {
