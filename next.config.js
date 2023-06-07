@@ -17,8 +17,8 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/_next/data/*:path',
-        to: `${base}/_next/data/*:path`
+        source: '/_next/data/:path*',
+        to: `${base}/_next/data/:path*`
       }
     ];
   },
