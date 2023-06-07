@@ -7,7 +7,7 @@ const base = process.env.NETLIFY
 module.exports = {
   generateBuildId: async () => {
     // You can, for example, get the latest git commit hash here
-    return "const-id";
+    return "db";
   },
 
   assetPrefix: process.env.NETLIFY
