@@ -11,6 +11,14 @@
  status=301
  force=true
 
-[[edge_functions]]
+[[context.dev.edge_functions]]
+  path = "/*"
+  function = "edge-protection"
+
+[[context.branch-deploy.edge_functions]]
+  path = "/*"
+  function = "edge-protection"
+
+[[context.deploy-preview.edge_functions]]
   path = "/*"
   function = "edge-protection"
