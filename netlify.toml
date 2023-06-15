@@ -11,3 +11,6 @@
  status=301
  force=true
 
+[[edge_functions]]
+  path = "/*"
+  function = "edge-protection"
