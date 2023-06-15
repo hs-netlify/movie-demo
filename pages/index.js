@@ -62,7 +62,7 @@ const Home = ({ movies }) => {
   return (
     <>
       <div className="text-center bg-red-400 text-white text-3xl ">
-        NEW TITLE
+        IP Blocker
       </div>
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
