@@ -5,21 +5,17 @@ export default async (request, context) => {
   const ipAllowList = JSON.parse(Deno.env.get("IP_ALLOW_LIST") || "null");
   const ip = context.ip;
 
-  console.log(ipAllowList);
+  const correctIp = ipAllowList ? ipRangeCheck(ip, ipAllowList) : true;
 
-  //console.log(ipRangeCheck(ip, ipAllowList));
-
-  const correctIp = ipAllowList ? ipAllowList.includes(ip) : true;
-
-  //Allows/Denies Access and rewrites to respective pages.
+  //Allows/Denies Access based off IP. Returns accessed denied if outside of range
   if (correctIp) {
     context.log(`Access Granted - IP Address ${ip} is allowed`);
     return context.next();
   } else {
     !correctIp && ipAllowList
-      ? context.log(`Access Denied -${errors.toString()}`)
+      ? context.log(`Access Denied - IP Address ${ip} is not allowed`)
       : "";
 
-    return context.rewrite("/access-denied");
+    return new Response("access-denied", context.next());
   }
 };
