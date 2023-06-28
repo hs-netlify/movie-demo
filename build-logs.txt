@@ -1,0 +1,38 @@
+[36minfo[39m  - Loaded env from /Users/hs/code/next-movie-db/.env
+[36minfo[39m  - Checking validity of types...
+[36minfo[39m  - Creating an optimized production build...
+[36minfo[39m  - Compiled successfully
+[36minfo[39m  - Collecting page data...
+[36minfo[39m  - Generating static pages (0/25)
+[36minfo[39m  - Generating static pages (6/25)
+[36minfo[39m  - Generating static pages (12/25)
+[36minfo[39m  - Generating static pages (18/25)
+[36minfo[39m  - Generating static pages (25/25)
+[36minfo[39m  - Finalizing page optimization...
+
+[4mPage[24m                                              [4mSize[24m     [4mFirst Load JS[24m
+┌ ● /                                             4.41 kB        [32m92.1 kB[39m
+├   /_app                                         0 B            [32m71.6 kB[39m
+├ ○ /404                                          263 B          [32m71.8 kB[39m
+├ ○ /access-denied                                340 B          [32m71.9 kB[39m
+├ ○ /contact-us                                   2.11 kB        [32m89.8 kB[39m
+└ ● /movie/[movieId] (ISR: 60 Seconds) ([31m[1m5324 ms[22m[39m)  3.01 kB        [32m90.7 kB[39m
+    ├ /movie/569094 ([32m341 ms[39m)
+    ├ /movie/385687 ([32m338 ms[39m)
+    ├ /movie/697843 ([32m314 ms[39m)
+    ├ /movie/667538 ([32m314 ms[39m)
+    ├ /movie/603692 ([32m308 ms[39m)
+    ├ /movie/447365 ([32m302 ms[39m)
+    ├ /movie/502356
+    └ [+13 more paths]
++ First Load JS shared by all                     [32m71.6 kB[39m
+  ├ chunks/framework-5f4595e5518b5600.js          42 kB
+  ├ chunks/main-7c9e8fd8226b6573.js               28.2 kB
+  ├ chunks/pages/_app-2e12d20c084c0479.js         494 B
+  ├ chunks/webpack-9b312e20a4e32339.js            836 B
+  └ css/90ede991feb7e476.css                      1.92 kB
+
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses [36mgetStaticProps[39m)
+   (ISR)     incremental static regeneration (uses revalidate in [36mgetStaticProps[39m)
+
