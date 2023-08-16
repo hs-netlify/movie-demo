@@ -1,11 +1,629 @@
-[build]
-  command = 'npm run build'
-  publish = '.next'
-
 [functions]
-  node_bundler = "esbuild"
+
+  [functions._ipx]
+  node_bundler = "nft"
+
+  [functions.___netlify-handler]
+  included_files = [
+    ".env",
+    ".env.local",
+    ".env.production",
+    ".env.production.local",
+    "./public/locales/**",
+    "./next-i18next.config.js",
+    ".next/server/**",
+    ".next/serverless/**",
+    ".next/*.json",
+    ".next/BUILD_ID",
+    ".next/static/chunks/webpack-middleware*.js",
+    "!.next/server/**/*.js.nft.json",
+    "!.next/server/**/*.map",
+    "!**/node_modules/@next/swc*/**/*",
+    "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+    "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/compiled/webpack/bundle4.js",
+    "!node_modules/next/dist/compiled/webpack/bundle5.js"
+  ]
+  external_node_modules = []
+  node_bundler = "nft"
+
+  [functions.___netlify-odb-handler]
+  included_files = [
+    ".env",
+    ".env.local",
+    ".env.production",
+    ".env.production.local",
+    "./public/locales/**",
+    "./next-i18next.config.js",
+    ".next/server/**",
+    ".next/serverless/**",
+    ".next/*.json",
+    ".next/BUILD_ID",
+    ".next/static/chunks/webpack-middleware*.js",
+    "!.next/server/**/*.js.nft.json",
+    "!.next/server/**/*.map",
+    "!**/node_modules/@next/swc*/**/*",
+    "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+    "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/compiled/webpack/bundle4.js",
+    "!node_modules/next/dist/compiled/webpack/bundle5.js"
+  ]
+  external_node_modules = []
+  node_bundler = "nft"
+
+  [functions."_api_*"]
+  included_files = [
+    ".env",
+    ".env.local",
+    ".env.production",
+    ".env.production.local",
+    "./public/locales/**",
+    "./next-i18next.config.js",
+    ".next/server/**",
+    ".next/serverless/**",
+    ".next/*.json",
+    ".next/BUILD_ID",
+    ".next/static/chunks/webpack-middleware*.js",
+    "!.next/server/**/*.js.nft.json",
+    "!.next/server/**/*.map",
+    "!**/node_modules/@next/swc*/**/*",
+    "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+    "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/compiled/webpack/bundle4.js",
+    "!node_modules/next/dist/compiled/webpack/bundle5.js"
+  ]
+  external_node_modules = []
+  node_bundler = "nft"
+
+[build]
+command = "npm run build"
+publish = ".next"
+
+  [build.environment]
+  NEXT_PRIVATE_TARGET = "server"
 
 [[redirects]]
-  from = '/api/*'
-  to = '/.netlify/functions/:splat'
-  status = 200
+from = "/api/*"
+to = "/.netlify/functions/:splat"
+status = 200
+
+[[redirects]]
+from = "/_next/static/*"
+to = "/static/:splat"
+status = 200
+
+[[redirects]]
+from = "/_next/image*"
+to = "/_ipx/w_:width,q_:quality/:url"
+status = 301
+
+  [redirects.query]
+  url = ":url"
+  w = ":width"
+  q = ":quality"
+
+[[redirects]]
+from = "/_ipx/*"
+to = "/.netlify/builders/_ipx"
+status = 200
+
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[[redirects]]
+from = "/images/no_image.jpg"
+to = "/images/no_image.jpg"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/images/react-movie-logo.svg"
+to = "/images/react-movie-logo.svg"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/images/search-icon.svg"
+to = "/images/search-icon.svg"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/images/tmdb_logo.svg"
+to = "/images/tmdb_logo.svg"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+force = true
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/_next/data/const-id/movie/569094.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/569094"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/667538.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/667538"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/298618.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/298618"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/346698.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/346698"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/884605.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/884605"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/614479.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/614479"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/615656.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/615656"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/1149381.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/1149381"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/976573.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/976573"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/1006462.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/1006462"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/457332.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/457332"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/1070514.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/1070514"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/447277.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/447277"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/385687.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/385687"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/1083862.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/1083862"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/447365.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/447365"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/1000475.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/1000475"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/1153366.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/1153366"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/496450.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/496450"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/movie/1040148.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/movie/1040148"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/const-id/access-denied.json"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[[redirects]]
+from = "/access-denied"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[[redirects]]
+from = "/_next/data/const-id/contact-us.json"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[[redirects]]
+from = "/contact-us"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[[redirects]]
+from = "/_next/data/const-id/movie/:movieId.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+
+[[redirects]]
+from = "/movie/:movieId"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[context]
+
+  [context.dev]
+
+    [context.dev.environment]
+    NEXT_PRIVATE_TARGET = "server"
+
+    [context.dev.functions]
+
+      [context.dev.functions._ipx]
+      node_bundler = "nft"
+
+      [context.dev.functions.___netlify-handler]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+      [context.dev.functions.___netlify-odb-handler]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+      [context.dev.functions."_api_*"]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+    [context.dev.build]
+
+      [context.dev.build.environment]
+      NEXT_PRIVATE_TARGET = "server"
+
+  [context.main]
+
+    [context.main.environment]
+    NEXT_PRIVATE_TARGET = "server"
+
+    [context.main.functions]
+
+      [context.main.functions._ipx]
+      node_bundler = "nft"
+
+      [context.main.functions.___netlify-handler]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+      [context.main.functions.___netlify-odb-handler]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+      [context.main.functions."_api_*"]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+    [context.main.build]
+
+      [context.main.build.environment]
+      NEXT_PRIVATE_TARGET = "server"

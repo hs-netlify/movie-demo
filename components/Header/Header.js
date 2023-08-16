@@ -1,8 +1,6 @@
 import React from "react";
 
-import Link from "next/link";
-
-import { Wrapper, Content, LogoImg, TMDBLogoImg } from "./Header.styles";
+import { Wrapper, Content, TMDBLogoImg } from "./Header.styles";
 
 const Header = () => (
   <Wrapper>
