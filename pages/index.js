@@ -53,7 +53,6 @@ const Home = ({ movies }) => {
   const randFilm = day <= 19 ? day : 12;
   return (
     <>
-      <div>{process.env.NEXT_PUBLIC_TEST_TITLE}</div>
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
