@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../stackbit.config.js"],
+  "sourcesContent": ["export default {\n  stackbitVersion: \"~0.6.0\",\n  ssgName: \"nextjs\",\n};\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,IAAO,0BAAQ;AAAA,EACb,iBAAiB;AAAA,EACjB,SAAS;AACX;",
+  "names": []
+}

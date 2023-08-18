@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useHomeFetch } from "../hooks/useHomeFetch";
 
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../utils/config";
+const test = process.env.DEPLOY_URL;
 
 //Components
 import HeroImage from "../components/HeroImage/HeroImage";
@@ -29,6 +30,7 @@ export const getStaticProps = async () => {
 //Hook
 
 const Home = ({ movies }) => {
+  console.log("test", test);
   const {
     state,
     setState,
@@ -53,6 +55,7 @@ const Home = ({ movies }) => {
   const randFilm = day <= 19 ? day : 12;
   return (
     <>
+      <div>{`${test}`}</div>
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
