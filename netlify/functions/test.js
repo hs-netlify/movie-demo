@@ -1,19 +1,5 @@
-const { builder } = require("@netlify/functions");
-
-async function handler(event, context) {
-  return {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "text/html",
-    },
-    body: `
-    <!DOCTYPE html>
-      <html>
-        <body>
-          Hello World
-        </body>
-    </html>
-    `,
-  };
-}
-exports.handler = builder(handler);
+exports.handler = async (event) => {
+  let test = process.env.DEPLOY_URL;
+  test = test ? test : "Not working";
+  return { statusCode: 200, body: JSON.stringify(test) };
+};

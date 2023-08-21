@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useHomeFetch } from "../hooks/useHomeFetch";
 
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../utils/config";
-const test = process.env.DEPLOY_URL;
 
 //Components
 import HeroImage from "../components/HeroImage/HeroImage";
@@ -19,18 +18,19 @@ import API from "../utils/API";
 export const getStaticProps = async () => {
   const movies = await API.fetchMovies("", 1);
   movies.results = movies.results.map((movie) => ({ ...movie, static: true }));
+  const test = process.env.DEPLOY_ID;
 
   return {
     props: {
       movies,
+      test,
     },
   };
 };
 
 //Hook
 
-const Home = ({ movies }) => {
-  console.log("test", test);
+const Home = ({ movies, test }) => {
   const {
     state,
     setState,
