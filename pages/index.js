@@ -28,7 +28,7 @@ export const getStaticProps = async () => {
   };
 };
 
-//Hook test
+//Hook
 
 const Home = ({ movies, test }) => {
   const {
