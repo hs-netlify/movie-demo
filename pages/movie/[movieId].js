@@ -16,25 +16,29 @@ import Actor from "../../components/Actor/Actor";
 
 import API from "../../utils/API";
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const movieId = context.params.movieId;
 
+  console.log("workling");
   const movie = await API.detailedMovieFetch(movieId);
 
-  return { props: { movie }, revalidate: 60 };
+  return {
+    props: { movie },
+    //, revalidate: 60
+  };
 };
 
-export const getStaticPaths = async () => {
-  const paths = [];
-  for (let i = 1; i < 2; i++) {
-    let moviePage = await API.fetchMovies("", i);
-    moviePage.results.forEach((movie) => {
-      paths.push({ params: { movieId: movie.id.toString() } });
-    });
-  }
+// export const getStaticPaths = async () => {
+//   const paths = [];
+//   for (let i = 1; i < 2; i++) {
+//     let moviePage = await API.fetchMovies("", i);
+//     moviePage.results.forEach((movie) => {
+//       paths.push({ params: { movieId: movie.id.toString() } });
+//     });
+//   }
 
-  return { paths, fallback: "blocking" };
-};
+//   return { paths, fallback: "blocking" };
+// };
 
 const Movie = ({ movie }) => {
   const router = useRouter();
