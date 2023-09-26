@@ -21,7 +21,22 @@ export const getServerSideProps = async (context) => {
 
   console.log("workling");
   const movie = await API.detailedMovieFetch(movieId);
+  const fetchData = async (url) => {};
 
+  let startTime = Date.now();
+  console.log("Initialising Page load");
+  const data1 = await fetchData("endpoint1");
+  console.log(`First fetch complete in  ${startTime - Date.now()} seconds`);
+  startTime = Date.now();
+  const data2 = await fetchData("endpoint1");
+  console.log(`Second fetch complete in  ${startTime - Date.now()} seconds`);
+  startTime = Date.now();
+  const data3 = await fetchData("endpoint1");
+  console.log(`Third fetch complete in  ${startTime - Date.now()} seconds`);
+
+  data1;
+  data2;
+  data3;
   return {
     props: { movie },
     //, revalidate: 60
