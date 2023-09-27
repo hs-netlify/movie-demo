@@ -16,44 +16,28 @@ import Actor from "../../components/Actor/Actor";
 
 import API from "../../utils/API";
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
   const movieId = context.params.movieId;
 
-  console.log("workling");
   const movie = await API.detailedMovieFetch(movieId);
-  const fetchData = async (url) => {};
 
-  let startTime = Date.now();
-  console.log("Initialising Page load");
-  const data1 = await fetchData("endpoint1");
-  console.log(`First fetch complete in  ${startTime - Date.now()} seconds`);
-  startTime = Date.now();
-  const data2 = await fetchData("endpoint1");
-  console.log(`Second fetch complete in  ${startTime - Date.now()} seconds`);
-  startTime = Date.now();
-  const data3 = await fetchData("endpoint1");
-  console.log(`Third fetch complete in  ${startTime - Date.now()} seconds`);
-
-  data1;
-  data2;
-  data3;
   return {
     props: { movie },
-    //, revalidate: 60
+    revalidate: 60,
   };
 };
 
-// export const getStaticPaths = async () => {
-//   const paths = [];
-//   for (let i = 1; i < 2; i++) {
-//     let moviePage = await API.fetchMovies("", i);
-//     moviePage.results.forEach((movie) => {
-//       paths.push({ params: { movieId: movie.id.toString() } });
-//     });
-//   }
+export const getStaticPaths = async () => {
+  const paths = [];
+  for (let i = 1; i < 2; i++) {
+    let moviePage = await API.fetchMovies("", i);
+    moviePage.results.forEach((movie) => {
+      paths.push({ params: { movieId: movie.id.toString() } });
+    });
+  }
 
-//   return { paths, fallback: "blocking" };
-// };
+  return { paths, fallback: "blocking" };
+};
 
 const Movie = ({ movie }) => {
   const router = useRouter();
