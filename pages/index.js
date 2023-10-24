@@ -34,6 +34,7 @@ export const getStaticProps = async () => {
 import { useHomeFetch } from "../hooks/useHomeFetch";
 
 const Home = ({ movies }) => {
+  let env = process.env.NEXT_PUBLIC_EXAMPLE;
   const {
     state,
     setState,
@@ -59,6 +60,7 @@ const Home = ({ movies }) => {
   const randFilm = day <= 19 ? day : 19;
   return (
     <>
+      <div>{JSON.stringify(env)}</div>
       <Header></Header>
       {!searchTerm && state.results[randFilm] ? (
         <HeroImage
