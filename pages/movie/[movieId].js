@@ -44,7 +44,7 @@ const Movie = ({ movie }) => {
   return (
     <>
       <>
-        <div>dev env</div>
+        <div>dev env !!!</div>
         {staticGen ? (
           <div className="w-full h-10 flex justify-center items-center bg-red-400 text-white">
             <span>STATICALLY GENERATED</span>
