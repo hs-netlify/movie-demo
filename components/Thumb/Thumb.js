@@ -9,7 +9,7 @@ const Thumb = ({ image, movieId, clickable, staticGen }) =>
     <Wrapper className="relative clickable">
       <>
         {staticGen ? (
-          <div className="rounded-full bg-red-400 flex justify-center items-center text-white h-12 w-12 absolute -top-4 -right-4">
+          <div className="rounded-full bg-red-400 flex justify-center items-center text-white h-12 z-20 w-12 absolute -top-4 -right-4">
             <span>SSG</span>
           </div>
         ) : null}
